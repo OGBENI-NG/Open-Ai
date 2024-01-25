@@ -11,6 +11,8 @@ export default function App() {
   const [language, setLanguage] = useState('')
   const [renderAiResponse, setRenderAiResponse] = useState(saveUserAiChatToLocalStorage)
   const [userChat, setUserChat] = useState(saveUserChatToLocalStorage)
+  const [loading, setLoading] = useState(false)
+  const openaiApiKey = import.meta.env.VITE_OPENAI_API_KEY
 
   function saveUserChatToLocalStorage() {
     const userChatMg = localStorage.getItem("userChat") 
@@ -26,6 +28,7 @@ export default function App() {
     localStorage.setItem("renderAiResponse", JSON.stringify(renderAiResponse))
   }, [userChat, renderAiResponse])
 
+  localStorage.clear()
   function handleChange(e) {
     setInputValue(e.target.value)
   }
@@ -35,12 +38,21 @@ export default function App() {
   }
   
   const openai = new OpenAI({
-    apiKey: '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',
+    apiKey: openaiApiKey,
     dangerouslyAllowBrowser: true
+    
   })
+
+  function clearChat(){
+    setRenderAiResponse([])
+    setUserChat([])
+    localStorage.clear()
+  }
+  
   
   async function fetchData() {
     try {
+      setLoading(true) // Set loading state to true
       const response = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
         messages: [
@@ -58,12 +70,14 @@ export default function App() {
       setRenderAiResponse(prevAiRes => [...prevAiRes, response.choices[0].message.content])
     } catch (error) {
       console.error('Error:', error)
+    } finally {
+      setLoading(false); // Set loading state to false after response
     }
   }
 
   function handleSendText() {
     setUserChat(prevUserChat => [...prevUserChat, inputValue]) 
-    fetchData()
+    fetchData("Spanish")
     setInputValue("")
   }
 
@@ -82,6 +96,8 @@ export default function App() {
         handleSendText={handleSendText}
         userChat={userChat}
         language={language}
+        loading={loading}
+        clearChat={clearChat}
       />
 
     </main>

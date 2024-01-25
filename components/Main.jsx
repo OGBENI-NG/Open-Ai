@@ -1,7 +1,8 @@
 import React from 'react'
 
 export default function Main({data, handleLanguage, inputValue, language,
-    handleChange, sendBtnIcon, handleSendText, renderAiResponse, userChat}) {
+    handleChange, sendBtnIcon, handleSendText, renderAiResponse, userChat,
+    loading, clearChat}) {
 
   const renderFlag = data.map(item => (
     <div 
@@ -35,7 +36,7 @@ export default function Main({data, handleLanguage, inputValue, language,
                 '>
                 {txt}
               </p>
-              <div >
+              <div>
                 {renderAiResponse[i] && (
                   <p className='font-bold text-[20px] rounded-[10px] rounded-tr-[1px]
                   text-bodyBg leading-[26px] bg-aiChatBg px-4 pt-3 pb-5 my-6'>
@@ -48,7 +49,15 @@ export default function Main({data, handleLanguage, inputValue, language,
         </section>
         <section className='mt-auto fixed bottom-0 left-0 right-0
          mx-6 pt-4 pb-8 px-1 bg-bodyBg'>
+
           <section className=''>
+            { loading 
+              ? (<p className='text-gray-500'>loading...</p>) 
+              : (<p 
+                onClick={clearChat}
+                className={`${userChat.length < 4 ? "hidden" : `text-gray-500 font-semibold py-1 px-4 w-max bg-txtAreaBg rounded-md mb-2 m-auto`}`}>
+              Clear chat
+            </p>)}
             <textarea
               className='relative h-[67px] bg-txtAreaBg w-full border-[3px]
                border-borderColor 
