@@ -1,25 +1,39 @@
 import React from 'react'
 
-export default function Main({data, handleLanguage, inputValue, language,
-    handleChange, sendBtnIcon, handleSendText, renderAiResponse, userChat,
-    loading, clearChat}) {
+export default function Main(
+  {firebaseData, handleLanguage, inputValue,
+    handleChange, sendBtnIcon, handleSendText, 
+    renderAiResponse, userChat, loading, clearChat, 
+    currentLanguage
+  }
+    
+  ) {
 
-  const renderFlag = data.map(item => (
+  const renderFlag = firebaseData.map((item) => (
     <div 
-      key={item.id} 
-      className={`w-[50px] h-[50px] && "border-[3px]"}  before:content-['']`}>
+      key={item.id}
+      className={`relative w-[50px] h-[50px] && "border-[3px]"}  before:content-[''] 
+       ${currentLanguage === item.language 
+        ? `before:content-[''] before:w-[50px] before:h-[35px] 
+          before:absolute before:border-[4px] before:border-aiChatBg
+          before:bottom-[8px] before:transition-all before:shadow-lg
+          before:shadow-boxShadow 
+          ` 
+        : ""}`}
+      >
+        
       <img 
-        className='w-full h-full'
+        className='w-full h-full -z-0'
         onClick={() => handleLanguage(item.language)} 
-        src={item.flag} 
+        src={item.img} 
         alt={item.alt} 
       />
     </div>
   ))
 
   return (
-    <main className='m-4 h-[100%] bg-bodyBg 
-    rounded-[15px] relative z-[1] overflow-y-scroll my-32 '>
+    <main className='m-4 bg-bodyBg 
+    rounded-[15px] relative z-[1] overflow-y-scroll my-32'>
       <section className='p-3 flex flex-col gap-5 h-full  relative'>
        <section className='pb-16'>
           <h1 className={`relative font-bold text-[20px] rounded-[10px] rounded-tr-[1px]
@@ -38,8 +52,8 @@ export default function Main({data, handleLanguage, inputValue, language,
               </p>
               <div>
                 {renderAiResponse[i] && (
-                  <p className='font-bold text-[20px] rounded-[10px] rounded-tr-[1px]
-                  text-bodyBg leading-[26px] bg-aiChatBg px-4 pt-3 pb-5 my-6'>
+                  <p className='font-bold -tracking-tighter text-[20px] rounded-[10px] rounded-tr-[1px]
+                  text-bodyBg leading-[26px]  bg-aiChatBg px-4 pt-3 pb-5 my-6'>
                     {renderAiResponse[i]}
                     </p>
                 )}
@@ -52,7 +66,7 @@ export default function Main({data, handleLanguage, inputValue, language,
 
           <section className=''>
             { loading 
-              ? (<p className='text-gray-500'>loading...</p>) 
+              ? (<span className="loading loading-dots loading-md text-aiChatBg"></span>) 
               : (<p 
                 onClick={clearChat}
                 className={`${userChat.length < 4 ? "hidden" : `text-gray-500 font-semibold py-1 px-4 w-max bg-txtAreaBg rounded-md mb-2 m-auto`}`}>
@@ -60,7 +74,7 @@ export default function Main({data, handleLanguage, inputValue, language,
             </p>)}
             <textarea
               className='relative h-[67px] bg-txtAreaBg w-full border-[3px]
-               border-borderColor 
+               border-borderColor text-userTxt
               rounded-[10px] outline-none text-2xl pl-3 py-3 pr-16 resize-none' 
               type="text" 
               onChange={handleChange}  
@@ -75,6 +89,7 @@ export default function Main({data, handleLanguage, inputValue, language,
               <img src={sendBtnIcon} alt="send-btn-icon" />
             </button>
           </section>
+          
           <section className='flex items-center justify-center gap-6 mt-3'>
             {renderFlag}
           </section>

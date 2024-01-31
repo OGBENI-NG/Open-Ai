@@ -12,12 +12,13 @@ export default {
         bodyBg: "#ffffff",
         borderColor: "#586E88",
         txtAreaBg: "#F5F5F5",
-        userTxt: "#333333"
+        userTxt: "#333333",
+        boxShadow: "#00000040"
       },
       fontFamily: {
         poppins:  ["Poppins", "sans-serif"]
       }
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 }
