@@ -4,7 +4,7 @@ export default function Main(
   {firebaseData, handleLanguage, inputValue,
     handleChange, sendBtnIcon, handleSendText, 
     renderAiResponse, userChat, loading, clearChat, 
-    currentLanguage
+    currentLanguage, isSticky
   }
     
   ) {
@@ -32,12 +32,13 @@ export default function Main(
   ))
 
   return (
-    <main className='m-4 bg-bodyBg 
-    rounded-[15px] relative z-[1] overflow-y-scroll my-32'>
-      <section className='p-3 flex flex-col gap-5 h-full  relative'>
-       <section className='pb-16'>
-          <h1 className={`relative font-bold text-[20px] rounded-[10px] rounded-tr-[1px]
-              text-bodyBg leading-[26px] bg-aiChatBg px-4 pt-3 pb-5  my-6`}
+    <main className='bg-transparent 
+    rounded-[15px] relative z-[1] overflow-y-scroll mt-[70px]'>
+      <section className='flex flex-col gap-5 h-full  relative'>
+       <section className='pb-16 px-4'>
+          <h1 className={`relative text-center font-[900] text-base rounded-[15px] 
+              text-[#000] tracking-[0.011rem] backdrop-blur-[100px] bg-white/50 
+                px-4 pt-3 pb-4 my-6`}
             >
               Select the language you 
               me to translate into, 
@@ -46,14 +47,15 @@ export default function Main(
           {userChat.map((txt, i) => (
             <section key={i}>
               <p className='font-bold text-[20px] rounded-[10px] rounded-tl-[1px]
-              text-userTxt leading-[26px] bg-userChatBg px-4 pt-3 pb-5 
+              text-bodyBg leading-[26px] bg-black/60 backdrop-blur-[50px]
+               px-4 pt-3 pb-5 
                 '>
                 {txt}
               </p>
               <div>
                 {renderAiResponse[i] && (
                   <p className='font-bold -tracking-tighter text-[20px] rounded-[10px] rounded-tr-[1px]
-                  text-bodyBg leading-[26px]  bg-aiChatBg px-4 pt-3 pb-5 my-6'>
+                  text-[#000] leading-[26px] backdrop-blur-[100px] bg-white/50 px-4 pt-3 pb-5 my-6'>
                     {renderAiResponse[i]}
                     </p>
                 )}
@@ -61,21 +63,20 @@ export default function Main(
             </section>
           ))}
         </section>
-        <section className='mt-auto fixed bottom-0 left-0 right-0
-         mx-6 pt-4 pb-8 px-1 bg-bodyBg'>
-
-          <section className=''>
-            { loading 
+        
+          <section className='px-4 py-2 fixed w-full bottom-[0] left-[0] backdrop-blur-[100px]
+            bg-white/50'>
+            {/* { loading 
               ? (<span className="loading loading-dots loading-md text-aiChatBg"></span>) 
               : (<p 
                 onClick={clearChat}
                 className={`${userChat.length < 4 ? "hidden" : `text-gray-500 font-semibold py-1 px-4 w-max bg-txtAreaBg rounded-md mb-2 m-auto`}`}>
               Clear chat
-            </p>)}
+            </p>)} */}
             <textarea
-              className='relative h-[67px] bg-txtAreaBg w-full border-[3px]
+              className='relative h-[50px] bg-txtAreaBg w-full border-[4px]
                border-borderColor text-userTxt
-              rounded-[10px] outline-none text-2xl pl-3 py-3 pr-16 resize-none' 
+              rounded-[10px] outline-none text-2xl pl-3 pr-16 resize-none' 
               type="text" 
               onChange={handleChange}  
               value={inputValue}
@@ -84,16 +85,16 @@ export default function Main(
             />
             <button 
               onClick={handleSendText}
-              className='absolute right-[10px] h-[66px] w-[40px]'
+              className='absolute top-0 right-[15px] h-[66px] w-[40px]'
             >
               <img src={sendBtnIcon} alt="send-btn-icon" />
             </button>
           </section>
           
-          <section className='flex items-center justify-center gap-6 mt-3'>
+          {/* <section className='flex items-center justify-center gap-6 mt-3'>
             {renderFlag}
-          </section>
-        </section>
+          </section> */}
+        
       </section>
     </main>
   )

@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { OpenAI } from 'openai'
 import Header from './Header'
-import headerBg from './img/Frame7.png'
+import headerBg from './img/logo.png'
 import sendBtnIcon from './img/send-btn.png'
+import darkIcon from './img/dark.png'
+import lightIcon from './img/light.png'
 import Main from './Main'
+import { ToggleContext } from './UseContext'
 import {fetchApiKey, fetchApiNewKey} from '../firebase'
 
 export default function App() {
@@ -15,6 +18,9 @@ export default function App() {
   const [renderAiResponse, setRenderAiResponse] = useState(saveUserAiChatToLocalStorage)
   const [userChat, setUserChat] = useState(saveUserChatToLocalStorage)
   const [loading, setLoading] = useState(false)
+  const {isToggled, toggle, isSticky, theme, toggleTheme} = useContext(ToggleContext)
+
+  const themeIconImg = theme === "light" ? lightIcon : darkIcon
 
   function saveUserChatToLocalStorage() {
     const userChatMg = localStorage.getItem("userChat") 
@@ -33,8 +39,11 @@ export default function App() {
   }, [userChat, renderAiResponse])
 
   function handleChange(e) {
-    setInputValue(e.target.value)
+    const inputValue = e.target.value
+    const capitalizedInputValue = inputValue.charAt(0).toUpperCase() + inputValue.slice(1)
+    setInputValue(capitalizedInputValue)
   }
+  
 
   function handleLanguage(lang) {
     if(!currentLanguage.includes(lang)) {
@@ -82,7 +91,7 @@ export default function App() {
         model: 'gpt-3.5-turbo',
         messages: messages,
         temperature: 0.7,
-        max_tokens: 64,
+        max_tokens: 54,
         top_p: 1,
        
       })
@@ -101,10 +110,16 @@ export default function App() {
   }
 
   return (
-   
-    <main className='font-poppins h-screen overflow-scroll bg-white'>
+    <main className='font-roboto h-screen overflow-scroll 
+    bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-yellow-200 via-red-500 to-fuchsia-500
+    '>
       <Header
         headerBg={headerBg}
+        isSticky={isSticky}
+        toggleTheme={toggleTheme}
+        isToggled={isToggled}
+        themeIconImg={themeIconImg}
+        toggle={toggle}
       />
       <Main 
         firebaseData={firebaseData}
@@ -118,6 +133,8 @@ export default function App() {
         currentLanguage={currentLanguage}
         loading={loading}
         clearChat={clearChat}
+        theme={theme}
+        isSticky={isSticky}
       />
     </main>
   )

@@ -16,7 +16,7 @@ export default {
         boxShadow: "#00000040"
       },
       fontFamily: {
-        poppins:  ["Poppins", "sans-serif"]
+        roboto:  ["Roboto", "sans-serif"]
       }
     },
   },
