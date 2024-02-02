@@ -1,36 +1,6 @@
 import React from 'react'
 
-export default function Main(
-  {firebaseData, handleLanguage, inputValue,
-    handleChange, sendBtnIcon, handleSendText, 
-    renderAiResponse, userChat, loading, clearChat, 
-    currentLanguage, isSticky
-  }
-    
-  ) {
-
-  const renderFlag = firebaseData.map((item) => (
-    <div 
-      key={item.id}
-      className={`relative w-[50px] h-[50px] && "border-[3px]"}  before:content-[''] 
-       ${currentLanguage === item.language 
-        ? `before:content-[''] before:w-[50px] before:h-[35px] 
-          before:absolute before:border-[4px] before:border-aiChatBg
-          before:bottom-[8px] before:transition-all before:shadow-lg
-          before:shadow-boxShadow 
-          ` 
-        : ""}`}
-      >
-        
-      <img 
-        className='w-full h-full -z-0'
-        onClick={() => handleLanguage(item.language)} 
-        src={item.img} 
-        alt={item.alt} 
-      />
-    </div>
-  ))
-
+export default function Main({ renderAiResponse, userChat}) {
   return (
     <main className='bg-transparent 
     rounded-[15px] relative z-[1] mt-[70px]'>
@@ -63,11 +33,6 @@ export default function Main(
             </section>
           ))}
         </section>
-        
-          {/* <section className='flex items-center justify-center gap-6 mt-3'>
-            {renderFlag}
-          </section> */}
-        
       </section>
     </main>
   )

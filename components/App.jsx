@@ -14,7 +14,7 @@ export default function App() {
   const [firebaseData, setFirebaseData] = useState([])
 
   const [inputValue, setInputValue] = useState('')
-  const [currentLanguage, setCurrentLanguage] = useState('')
+  const [currentLanguage, setCurrentLanguage] = useState("Spanish")
   const [renderApiKey, setRenderApiKey] = useState('')
   const [renderAiResponse, setRenderAiResponse] = useState(saveUserAiChatToLocalStorage)
   const [userChat, setUserChat] = useState(saveUserChatToLocalStorage)
@@ -112,8 +112,8 @@ export default function App() {
 
   return (
     <main className='font-roboto h-[100dvh] overflow-x-scroll 
-    bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-yellow-200 via-red-500 to-fuchsia-500
-    '>
+      bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-yellow-200 via-red-500 to-fuchsia-500 '
+    >
       <Header
         headerBg={headerBg}
         isSticky={isSticky}
@@ -121,15 +121,15 @@ export default function App() {
         isToggled={isToggled}
         themeIconImg={themeIconImg}
         toggle={toggle}
+        currentLanguage={currentLanguage}
+        handleLanguage={handleLanguage}
+        firebaseData={firebaseData}
+        clearChat={clearChat}
       />
       <Main 
-        firebaseData={firebaseData}
-        handleLanguage={handleLanguage}
         renderAiResponse={renderAiResponse}
         userChat={userChat}
-        currentLanguage={currentLanguage}
         loading={loading}
-        clearChat={clearChat}
         theme={theme}
         isSticky={isSticky}
       />

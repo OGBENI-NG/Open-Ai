@@ -1,6 +1,9 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
+import NavBar from './NavBar'
 
-export default function Header({headerBg, themeIconImg, toggleTheme, isSticky}) {
+
+export default function Header({headerBg, themeIconImg, toggleTheme, isSticky
+  , firebaseData, currentLanguage, handleLanguage, clearChat, toggle, isToggled}) {
 
 
   return (
@@ -11,14 +14,24 @@ export default function Header({headerBg, themeIconImg, toggleTheme, isSticky}) 
       <p className='text-[#000] font-bold text-xl capitalize'>language translator</p> */}
       </div>
       <div className='flex items-center'>
-        <div className='flex items-center gap-2 backdrop-blur-[100px] bg-black/10 w-max
-          py-2 px-3 rounded-lg'>
+        <div 
+          onClick={toggle} 
+          className={`flex items-center gap-2 backdrop-blur-[100px] bg-black/10 w-max
+          py-2 px-3 rounded-lg`}
+        >
           <img className='w-[40px] h-[40px]' src={headerBg} alt="headerBg-img" /> 
         </div>
         <div className='ml-auto' onClick={toggleTheme}>
           <img className='w-[40px] h-[40px]' src={themeIconImg} alt="theme-icon" />
         </div>
       </div>
+      <NavBar 
+        firebaseData={firebaseData}
+        currentLanguage={currentLanguage}
+        handleLanguage={handleLanguage}
+        clearChat={clearChat}
+        isToggled={isToggled}
+      />
     </header>
   )
 }

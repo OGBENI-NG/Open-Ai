@@ -13,7 +13,7 @@ export default {
         borderColor: "#586E88",
         txtAreaBg: "#F5F5F5",
         userTxt: "#333333",
-        boxShadow: "#00000040"
+        boxShadow: "rgb(248 113 113/ 0.5)"
       },
       fontFamily: {
         roboto:  ["Roboto", "sans-serif"]

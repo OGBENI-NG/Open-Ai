@@ -8,13 +8,11 @@ export default function UseContext({ children }) {
 
   const toggle = () => {
     setIsToggled(prevState => !prevState)
-}
-
-function toggleTheme() {
-      setTheme(prevTheme => prevTheme === "light" ? "dark" : "light") 
   }
 
-  
+  function toggleTheme() {
+    setTheme(prevTheme => prevTheme === "light" ? "dark" : "light") 
+  }
 
   return (
     <ToggleContext.Provider value={{ isToggled, toggle, theme, toggleTheme }}>
