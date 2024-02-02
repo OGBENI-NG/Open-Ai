@@ -33,7 +33,7 @@ export default function Main(
 
   return (
     <main className='bg-transparent 
-    rounded-[15px] relative z-[1] overflow-y-scroll mt-[70px]'>
+    rounded-[15px] relative z-[1] mt-[70px]'>
       <section className='flex flex-col gap-5 h-full  relative'>
        <section className='pb-16 px-4'>
           <h1 className={`relative text-center font-[900] text-base rounded-[15px] 
@@ -64,33 +64,6 @@ export default function Main(
           ))}
         </section>
         
-          <section className='px-4 py-2 fixed w-full bottom-[0] left-[0] backdrop-blur-[100px]
-            bg-white/50'>
-            {/* { loading 
-              ? (<span className="loading loading-dots loading-md text-aiChatBg"></span>) 
-              : (<p 
-                onClick={clearChat}
-                className={`${userChat.length < 4 ? "hidden" : `text-gray-500 font-semibold py-1 px-4 w-max bg-txtAreaBg rounded-md mb-2 m-auto`}`}>
-              Clear chat
-            </p>)} */}
-            <textarea
-              className='relative h-[50px] bg-txtAreaBg w-full border-[4px]
-               border-borderColor text-userTxt
-              rounded-[10px] outline-none text-2xl pl-3 pr-16 resize-none' 
-              type="text" 
-              onChange={handleChange}  
-              value={inputValue}
-              name='textInput'
-              id='textInput'
-            />
-            <button 
-              onClick={handleSendText}
-              className='absolute top-0 right-[15px] h-[66px] w-[40px]'
-            >
-              <img src={sendBtnIcon} alt="send-btn-icon" />
-            </button>
-          </section>
-          
           {/* <section className='flex items-center justify-center gap-6 mt-3'>
             {renderFlag}
           </section> */}

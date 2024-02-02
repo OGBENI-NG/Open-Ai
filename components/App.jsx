@@ -6,6 +6,7 @@ import sendBtnIcon from './img/send-btn.png'
 import darkIcon from './img/dark.png'
 import lightIcon from './img/light.png'
 import Main from './Main'
+import Footer from './Footer'
 import { ToggleContext } from './UseContext'
 import {fetchApiKey, fetchApiNewKey} from '../firebase'
 
@@ -110,7 +111,7 @@ export default function App() {
   }
 
   return (
-    <main className='font-roboto h-screen overflow-scroll 
+    <main className='font-roboto h-[100dvh] overflow-x-scroll 
     bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-yellow-200 via-red-500 to-fuchsia-500
     '>
       <Header
@@ -124,17 +125,19 @@ export default function App() {
       <Main 
         firebaseData={firebaseData}
         handleLanguage={handleLanguage}
-        handleChange={handleChange}
-        inputValue={inputValue}
-        sendBtnIcon={sendBtnIcon}
         renderAiResponse={renderAiResponse}
-        handleSendText={handleSendText}
         userChat={userChat}
         currentLanguage={currentLanguage}
         loading={loading}
         clearChat={clearChat}
         theme={theme}
         isSticky={isSticky}
+      />
+      <Footer
+        inputValue={inputValue}
+        sendBtnIcon={sendBtnIcon}
+        handleChange={handleChange}
+        handleSendText={handleSendText}
       />
     </main>
   )
