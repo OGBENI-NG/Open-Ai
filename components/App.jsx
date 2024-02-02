@@ -19,7 +19,7 @@ export default function App() {
   const [renderAiResponse, setRenderAiResponse] = useState(saveUserAiChatToLocalStorage)
   const [userChat, setUserChat] = useState(saveUserChatToLocalStorage)
   const [loading, setLoading] = useState(false)
-  const {isToggled, toggle, isSticky, theme, toggleTheme} = useContext(ToggleContext)
+  const {isToggled, toggle, isSticky, theme, toggleTheme, navbarRef} = useContext(ToggleContext)
 
   const themeIconImg = theme === "light" ? lightIcon : darkIcon
 
@@ -125,6 +125,7 @@ export default function App() {
         handleLanguage={handleLanguage}
         firebaseData={firebaseData}
         clearChat={clearChat}
+        navbarRef={navbarRef}
       />
       <Main 
         renderAiResponse={renderAiResponse}
