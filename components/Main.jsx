@@ -8,7 +8,7 @@ export default function Main({ renderAiResponse, userChat}) {
        <section className='pb-16 px-4'>
           <h1 className={`relative text-center font-[900] text-base rounded-[15px] 
               text-[#000] tracking-[0.011rem] backdrop-blur-[100px] bg-white/50 
-                px-4 pt-3 pb-4 my-6`}
+                px-3 mx-14 pt-3 pb-4 my-6`}
             >
               Select the language you 
               me to translate into, 

@@ -19,7 +19,7 @@ export default function Header({headerBg, themeIconImg, toggleTheme, navbarRef
       <div className='flex items-center'>
         <div 
           onClick={toggle} 
-          className={`flex items-center gap-2 backdrop-blur-[100px] bg-black/10 w-max
+          className={`flex items-center gap-2 backdrop-blur-[100px] bg-white/30 w-max
           py-2 px-3 rounded-lg`}
         >
           <img className='w-[40px] h-[40px]' src={headerBg} alt="headerBg-img" /> 

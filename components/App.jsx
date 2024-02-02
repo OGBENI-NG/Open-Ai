@@ -21,7 +21,7 @@ export default function App() {
   const [loading, setLoading] = useState(false)
   const {isToggled, toggle, isSticky, theme, toggleTheme, navbarRef} = useContext(ToggleContext)
 
-  const themeIconImg = theme === "light" ? lightIcon : darkIcon
+  const themeIconImg = theme === "light" ? darkIcon : lightIcon
 
   function saveUserChatToLocalStorage() {
     const userChatMg = localStorage.getItem("userChat") 
@@ -110,9 +110,10 @@ export default function App() {
     setInputValue("")
   }
 
+  const userThemes = theme === "light" ? `bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-yellow-200 via-red-500 to-fuchsia-500` : `bg-[conic-gradient(at_right,_var(--tw-gradient-stops))] from-slate-900 via-purple-900 to-slate-900`
+
   return (
-    <main className='font-roboto h-[100dvh] overflow-x-scroll 
-      bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-yellow-200 via-red-500 to-fuchsia-500 '
+    <main className={`font-roboto h-[100dvh] overflow-x-scroll ${userThemes}`}
     >
       <Header
         headerBg={headerBg}
