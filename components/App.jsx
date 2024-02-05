@@ -1,11 +1,13 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { OpenAI } from 'openai'
 import Header from './Header'
-import headerBg from './img/logo.png'
-import sendBtnIcon from './img/send-btn.png'
+import headerBg from './img/usa-icon.png'
+import dropDownIcon from './img/dropdown.png'
+import sendBtnIcon from './img/send-icon.png'
 import darkIcon from './img/dark.png'
-import lightIcon from './img/light.png'
 import Main from './Main'
+import lightIcon from './img/light.png'
+import spanishFlag from './img/spain.png'
 import Footer from './Footer'
 import { ToggleContext } from './UseContext'
 import {fetchApiKey, fetchApiNewKey} from '../firebase'
@@ -15,6 +17,7 @@ export default function App() {
 
   const [inputValue, setInputValue] = useState('')
   const [currentLanguage, setCurrentLanguage] = useState("Spanish")
+  const [currentLangImg, setCurrentLangImg] = useState(spanishFlag)
   const [renderApiKey, setRenderApiKey] = useState('')
   const [renderAiResponse, setRenderAiResponse] = useState(saveUserAiChatToLocalStorage)
   const [userChat, setUserChat] = useState(saveUserChatToLocalStorage)
@@ -23,11 +26,11 @@ export default function App() {
 
   const themeIconImg = theme === "light" ? darkIcon : lightIcon
 
+
   function saveUserChatToLocalStorage() {
     const userChatMg = localStorage.getItem("userChat") 
     return userChatMg ? JSON.parse(userChatMg) : []
   }
-
 
   function saveUserAiChatToLocalStorage() {
     const aiChatResponse = localStorage.getItem("renderAiResponse")
@@ -41,14 +44,16 @@ export default function App() {
 
   function handleChange(e) {
     const inputValue = e.target.value
+    // Adjust textarea height
+    e.target.style.height = `${e.target.scrollHeight}px`
     const capitalizedInputValue = inputValue.charAt(0).toUpperCase() + inputValue.slice(1)
     setInputValue(capitalizedInputValue)
   }
   
-
-  function handleLanguage(lang) {
+  function handleLanguage(lang, currentImg) {
     if(!currentLanguage.includes(lang)) {
       setCurrentLanguage(lang)
+      setCurrentLangImg(currentImg)
     }
   }
 
@@ -105,16 +110,17 @@ export default function App() {
   }
 
   function handleSendText() {
-    setUserChat(prevUserChat => [...prevUserChat, inputValue]) 
-    fetchData()
-    setInputValue("")
+    if(inputValue.trim("")) {
+      setUserChat(prevUserChat => [...prevUserChat, inputValue]) 
+      fetchData()
+      setInputValue("")
+    }
   }
 
   const userThemes = theme === "light" ? `bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-yellow-200 via-red-500 to-fuchsia-500` : `bg-[conic-gradient(at_right,_var(--tw-gradient-stops))] from-slate-900 via-purple-900 to-slate-900`
 
   return (
-    <main className={`font-roboto h-[100dvh] overflow-x-scroll ${userThemes}`}
-    >
+    <main className={`font-roboto h-[100dvh] overflow-x-scroll ${userThemes}`}>
       <Header
         headerBg={headerBg}
         isSticky={isSticky}
@@ -127,6 +133,8 @@ export default function App() {
         firebaseData={firebaseData}
         clearChat={clearChat}
         navbarRef={navbarRef}
+        dropDownIcon={dropDownIcon}
+        currentLangImg={currentLangImg}
       />
       <Main 
         renderAiResponse={renderAiResponse}

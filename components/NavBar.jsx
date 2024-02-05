@@ -6,29 +6,30 @@ export default function NavBar({firebaseData, clearChat, handleLanguage,
 
   const renderFlag = firebaseData.map((item) => {
     const isCurrentLanguage = currentLanguage === item.language;
-    const transitLanBg = ["French", "Japan", "China", "Spanish"].includes(item.language);
+    const transitLanBg = ["French", "Japan", "China", "Spanish"].includes(item.language)
   
     const languageClasses = `
-      relative flex items-center gap-3 pt-6 
-      ${isCurrentLanguage ? `text-green-500 before:content-[''] before:min-w-min before:h-[50px] 
-        before:absolute before:border-[2px] before:rounded-xl before:border-red-400
+      relative flex items-center pt-4 
+      ${isCurrentLanguage ? `text-green-600 before:content-['']
+        before:h-[35px] 
+        before:absolute before:border-[1.5px] before:rounded-lg before:border-green-100
         before:bottom-[0] before:-left-[0] before:transition-all before:shadow-lg
-        before:shadow-boxShadow before:right-[0] before:-mx-[20px]` : ""}
-      ${transitLanBg ? `before:top-[20px] before:bg-white/60 
+        before:shadow-boxShadow before:right-[0] before:-mx-[12px]` : ""}
+      ${transitLanBg ? `before:bg-green-50 before:top-[12px]
       before:backdrop-blur-[100px] before:-z-[1]` 
       : ""}
     `;
   
     return (
-      <div key={item.id} className='px-8 w-full transition-all text-orange-900'>
+      <div key={item.id} className='px-6 w-full transition text-orange-900'>
         <div 
-          onClick={() => handleLanguage(item.language)} 
+          onClick={() => handleLanguage(item.language, item.img)} 
           className={languageClasses}
         >
-          <ul className='text-2xl font-semibold '>
+          <ul className='text-base font-semibold'>
             <li>{item.language}</li>
           </ul>
-          <div className='w-[40px] h-[40px] ml-auto'>
+          <div className='w-[25px] h-[25px] ml-auto'>
             <img 
               className='w-full h-full'
               src={item.img} 
@@ -37,18 +38,18 @@ export default function NavBar({firebaseData, clearChat, handleLanguage,
           </div>
         </div>
       </div>
-    );
+    )
   })
     
 
   return (
-    <nav className={`absolute transition-all left-0 top-[80px] h-max
-      overflow-x-hidden  pb-6 backdrop-blur-[100px] bg-white/95
-      ${isToggled ? 'w-[60%]' : 'w-0'} z-[10] rounded-e-xl`}
+    <nav className={`absolute transition-all left-[98px] top-[63px] h-max
+      overflow-x-hidden pb-6  bg-white/90 w-[40%] backdrop-blur-3xl 
+      ${isToggled ? 'h-[265px]' : 'h-[0px] opacity-0'} z-[10] rounded-b-lg`}
     >
       {renderFlag}
       <div className=' mt-10 font-bold text-xl text-red-500 bg-red-100 
-        w-max m-auto py-2 px-6 rounded-full'
+        w-max m-auto py-1 px-4 rounded-full'
       >
         <button onClick={clearChat}>Clear chat</button>
       </div>
