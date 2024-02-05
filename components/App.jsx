@@ -22,7 +22,7 @@ export default function App() {
   const [renderAiResponse, setRenderAiResponse] = useState(saveUserAiChatToLocalStorage)
   const [userChat, setUserChat] = useState(saveUserChatToLocalStorage)
   const [loading, setLoading] = useState(false)
-  const {isToggled, toggle, isSticky, theme, toggleTheme, navbarRef} = useContext(ToggleContext)
+  const {isToggled, toggle, isSticky, theme, toggleTheme, navbarRef, setIsToggled} = useContext(ToggleContext)
 
   const themeIconImg = theme === "light" ? darkIcon : lightIcon
 
@@ -54,6 +54,7 @@ export default function App() {
     if(!currentLanguage.includes(lang)) {
       setCurrentLanguage(lang)
       setCurrentLangImg(currentImg)
+      setIsToggled(false)
     }
   }
 
@@ -76,6 +77,7 @@ export default function App() {
   function clearChat(){
     setRenderAiResponse([])
     setUserChat([])
+    setIsToggled(false)
     localStorage.clear()
   }
   

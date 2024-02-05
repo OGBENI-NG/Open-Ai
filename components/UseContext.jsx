@@ -30,7 +30,7 @@ export default function UseContext({ children }) {
   }, [])
 
   return (
-    <ToggleContext.Provider value={{ isToggled, toggle, theme, toggleTheme, navbarRef }}>
+    <ToggleContext.Provider value={{ isToggled, toggle, theme, toggleTheme, navbarRef,  setIsToggled}}>
       {children}
     </ToggleContext.Provider>
   )
