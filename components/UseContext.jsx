@@ -14,14 +14,6 @@ export default function UseContext({ children }) {
   function toggleTheme() {
     setTheme(prevTheme => prevTheme === "light" ? "dark" : "light") 
   }
-
-  function handleFocus() {
-    document.body.style.overflowX = 'hidden'
-  }
-
-  function handleBlur() {
-    document.body.style.overflowX = 'auto'
-  }
  
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -41,7 +33,6 @@ export default function UseContext({ children }) {
     <ToggleContext.Provider value={
       { isToggled, toggle, theme, 
         toggleTheme, navbarRef,  setIsToggled,
-        handleBlur, handleFocus
       }
     }>
       {children}

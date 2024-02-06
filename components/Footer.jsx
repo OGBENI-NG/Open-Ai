@@ -3,7 +3,7 @@ import React,{useEffect, useRef} from 'react'
 export default function Footer(
     {
       handleChange, inputValue, handleSendText,
-      sendBtnIcon, handleBlur, handleFocus
+      sendBtnIcon
     }
   ) {
   const textareaRef = useRef(null)
@@ -37,8 +37,6 @@ export default function Footer(
           name='textInput'
           id='textInput'
           ref={textareaRef}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
         />
         <img 
           onClick={handleSendText}
