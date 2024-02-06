@@ -1,7 +1,11 @@
-import React,{useEffect, useRef} from 'react'
+import React,{useEffect, useRef, useState} from 'react'
 
-export default function Footer({handleChange, inputValue, handleSendText, sendBtnIcon}) {
-
+export default function Footer(
+    {
+      handleChange, inputValue, handleSendText,
+      sendBtnIcon, isTyping, handleBlur, handleFocus
+    }
+  ) {
   const textareaRef = useRef(null)
 
   useEffect(() => {
@@ -17,9 +21,10 @@ export default function Footer({handleChange, inputValue, handleSendText, sendBt
   }, [inputValue])
 
   return (
-    <footer className='fixed z-[5] w-full bottom-[0] left-[0] 
-      backdrop-blur-[100px] bg-white/50 px-4 py-3'
-    >
+    <footer className={`fixed z-[5] w-full bottom-[0] left-[0] 
+      backdrop-blur-[100px] bg-white/50 px-4 py-3 
+      ${isTyping ? 'fixed bottom-0 left-0 z-10' : ''}`
+    }>
       <div className='flex items-center gap-2'>
         <textarea
           className='bg-txtAreaBg w-full border-[1.5px] transition-all
@@ -32,6 +37,8 @@ export default function Footer({handleChange, inputValue, handleSendText, sendBt
           name='textInput'
           id='textInput'
           ref={textareaRef}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
         />
         <img 
           onClick={handleSendText}

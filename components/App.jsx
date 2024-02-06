@@ -22,7 +22,11 @@ export default function App() {
   const [renderAiResponse, setRenderAiResponse] = useState(saveUserAiChatToLocalStorage)
   const [userChat, setUserChat] = useState(saveUserChatToLocalStorage)
   const [loading, setLoading] = useState(false)
-  const {isToggled, toggle, isSticky, theme, toggleTheme, navbarRef, setIsToggled} = useContext(ToggleContext)
+  const {
+    isToggled, toggle, isSticky, theme,
+    toggleTheme, navbarRef, setIsToggled,
+    handleBlur, handleFocus, isTyping
+  } = useContext(ToggleContext)
 
   const themeIconImg = theme === "light" ? darkIcon : lightIcon
 
@@ -122,7 +126,10 @@ export default function App() {
   const userThemes = theme === "light" ? `bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-yellow-200 via-red-500 to-fuchsia-500` : `bg-[conic-gradient(at_right,_var(--tw-gradient-stops))] from-slate-900 via-purple-900 to-slate-900`
 
   return (
-    <main className={`font-roboto h-screen min-h-[full] overflow-x-hidden ${userThemes}`}>
+    <main className={`font-roboto min-h-screen overflow-x-hidden 
+      ${userThemes}
+      ${isTyping ? 'fixed' : 'relative'}`
+    }>
       <Header
         headerBg={headerBg}
         isSticky={isSticky}
@@ -137,6 +144,7 @@ export default function App() {
         navbarRef={navbarRef}
         dropDownIcon={dropDownIcon}
         currentLangImg={currentLangImg}
+        isTyping={isTyping}
       />
       <Main 
         renderAiResponse={renderAiResponse}
@@ -150,6 +158,9 @@ export default function App() {
         sendBtnIcon={sendBtnIcon}
         handleChange={handleChange}
         handleSendText={handleSendText}
+        isTyping={isTyping}
+        handleBlur={handleBlur}
+        handleFocus={handleFocus}
       />
     </main>
   )
