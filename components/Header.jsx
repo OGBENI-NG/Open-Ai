@@ -15,7 +15,7 @@ export default function Header(
   return (
     <header
       ref={navbarRef}
-      className={`'h-max px-3 py-3 backdrop-blur-[100px] bg-white/50 
+      className={`'h-max px-3 py-4 backdrop-blur-[100px] bg-white/50 
       fixed w-full z-[10] top-0 left-0 ${isTyping ? 'fixed top-0 left-0 z-10' : ''}`}
     >
       <div className='flex items-center'>
