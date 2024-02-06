@@ -3,9 +3,9 @@ import React from 'react'
 export default function Main({ renderAiResponse, userChat}) {
   return (
     <main className='bg-transparent 
-    rounded-[15px] relative z-[1] pt-[70px]'>
+    rounded-[15px] relative z-[1] overflow-x-hidden'>
       <section className='flex flex-col gap-5 relative'>
-       <section className='pb-16 px-3'>
+       <section className='px-3'>
           <h1 className={`relative text-center font-[900] text-sm rounded-[8px] 
               text-[#000] tracking-[0.011rem] backdrop-blur-[100px] bg-white/50 
                 px-0 mx-14 py-2 my-6`}
