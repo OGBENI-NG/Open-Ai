@@ -21,7 +21,7 @@ export default function Footer(
   }, [inputValue])
 
   return (
-    <footer className={`fixed z-[5] w-full bottom-[0] left-[0] 
+    <footer className={`fixed z-[5] w-full bottom-0 left-0 
       backdrop-blur-[100px] bg-white/50 px-4 py-3 overflow-x-hidden`
     }>
       <div className='flex items-center gap-2'>
