@@ -6,9 +6,9 @@ export default function Main({ renderAiResponse, userChat}) {
     rounded-[15px] relative z-[1] mt-[70px]'>
       <section className='flex flex-col gap-5 h-full  relative'>
        <section className='pb-16 px-4'>
-          <h1 className={`relative text-center font-[900] text-base rounded-[15px] 
+          <h1 className={`relative text-center font-[900] text-sm rounded-[8px] 
               text-[#000] tracking-[0.011rem] backdrop-blur-[100px] bg-white/50 
-                px-3 mx-14 pt-3 pb-4 my-6`}
+                px-0 mx-14 pt-3 pb-4 my-6`}
             >
               Select the language you 
               me to translate into.
