@@ -21,7 +21,7 @@ export default function Footer(
   }, [inputValue])
 
   return (
-    <div className={`fixed z-[5] w-full bottom-0 left-0 
+    <div className={`fixed z-[999] w-full bottom-0 left-0 
       backdrop-blur-[100px] bg-white/50 px-3 py-3`
     }>
       <div className='flex items-center gap-2'>
