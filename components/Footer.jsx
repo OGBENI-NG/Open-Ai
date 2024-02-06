@@ -21,7 +21,7 @@ export default function Footer(
   }, [inputValue])
 
   return (
-    <div className={`fixed z-[10] w-full bottom-0 left-0 
+    <footer className={`fixed z-[10] w-full bottom-0 left-0 
       backdrop-blur-[100px] bg-white/50 px-3 py-3 
       `
     }>
@@ -45,6 +45,6 @@ export default function Footer(
           alt="send-btn-icon" 
         />
       </div>
-    </div>
+    </footer>
   )
 }

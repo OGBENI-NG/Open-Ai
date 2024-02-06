@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState, useContext, useRef } from 'react'
 import { OpenAI } from 'openai'
 import Header from './Header'
 import headerBg from './img/usa-icon.png'
@@ -22,6 +22,7 @@ export default function App() {
   const [renderAiResponse, setRenderAiResponse] = useState(saveUserAiChatToLocalStorage)
   const [userChat, setUserChat] = useState(saveUserChatToLocalStorage)
   const [loading, setLoading] = useState(false)
+  const containerRef = useRef(null)
   const {
     isToggled, toggle, theme,
     toggleTheme, navbarRef, setIsToggled,
@@ -72,6 +73,11 @@ export default function App() {
     getApi()
   },[])
 
+
+  useEffect(() => {
+    containerRef.current.scrollTop = containerRef.current.scrollHeight
+  }, [userChat, renderAiResponse])
+
   const openai = new OpenAI({
     apiKey: renderApiKey,
     dangerouslyAllowBrowser: true
@@ -111,7 +117,7 @@ export default function App() {
     } catch (error) {
       console.error('Error:', error)
     } finally {
-      setLoading(false); // Set loading state to false after response
+      setLoading(false) // Set loading state to false after response
     }
   }
 
@@ -127,6 +133,7 @@ export default function App() {
 
   return (
     <main className={`font-roboto scroll-smooth ${userThemes}
+      flex flex-col overflow-hidden
       `
     }>
       <Header
@@ -149,6 +156,7 @@ export default function App() {
         loading={loading}
         theme={theme}
         userThemes={userThemes}
+        containerRef={containerRef}
       />
       <Footer
         inputValue={inputValue}
