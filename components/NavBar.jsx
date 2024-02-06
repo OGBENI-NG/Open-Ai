@@ -13,7 +13,7 @@ export default function NavBar({firebaseData, clearChat, handleLanguage,
       ${isCurrentLanguage ? `text-green-700 before:content-['']
         before:h-[35px] 
         before:absolute before:border-[1.5px] before:rounded-lg before:border-red-300
-        before:bottom-[0] before:-left-[0] before:transition-all before:shadow-lg
+        before:bottom-[0] before:-left-[0] before:shadow-lg
         before:shadow-boxShadow before:right-[0] before:-mx-[12px]` : ""}
       ${transitLanBg ? `before:bg-red-50 before:top-[12px]
       before:backdrop-blur-[100px] before:-z-[1]` : ""}
@@ -25,7 +25,7 @@ export default function NavBar({firebaseData, clearChat, handleLanguage,
           onClick={() => handleLanguage(item.language, item.img)} 
           className={languageClasses}
         >
-          <ul className='text-base font-semibold transition-all'>
+          <ul className='text-base font-semibold'>
             <li>{item.language}</li>
           </ul>
           <div className='w-[25px] h-[25px] ml-auto'>
@@ -42,7 +42,7 @@ export default function NavBar({firebaseData, clearChat, handleLanguage,
     
 
   return (
-    <nav className={`absolute left-[0px] top-[63px] transition-all
+    <nav className={`absolute left-[0px] top-[63px] transition-all overflow-hidden
       overflow-x-hidden pb-4 backdrop-blur-[100px] bg-white/90 w-[191px] 
       ${isToggled ? 'h-[238px] ' : 'h-[0] opacity-0'} rounded-b-lg`}
     >

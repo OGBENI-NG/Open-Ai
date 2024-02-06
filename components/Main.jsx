@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Main({ renderAiResponse, userChat, userThemes}) {
+export default function Main({ renderAiResponse, userChat}) {
   return (
     <main className={`bg-transparent 
-    rounded-[15px] relative z-[1] h-screen ${userThemes}`}>
+    rounded-[15px] relative z-[1]`}>
       <section className='flex flex-col gap-5 relative'>
        <section className='px-3 py-16'>
           <h1 className={`relative text-center font-[900] text-sm rounded-[8px] 
