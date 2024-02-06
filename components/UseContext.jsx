@@ -16,11 +16,11 @@ export default function UseContext({ children }) {
   }
 
   function handleFocus() {
-    document.body.style.overflow = 'hidden'
+    document.body.style.overflowX = 'hidden'
   }
 
   function handleBlur() {
-    document.body.style.overflow = 'auto'
+    document.body.style.overflowX = 'auto'
   }
  
   useEffect(() => {
