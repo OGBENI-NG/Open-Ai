@@ -1,9 +1,9 @@
-import React,{useEffect, useRef, useState} from 'react'
+import React,{useEffect, useRef} from 'react'
 
 export default function Footer(
     {
       handleChange, inputValue, handleSendText,
-      sendBtnIcon, isTyping, handleBlur, handleFocus
+      sendBtnIcon, handleBlur, handleFocus
     }
   ) {
   const textareaRef = useRef(null)

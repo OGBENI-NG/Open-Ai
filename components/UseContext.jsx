@@ -6,7 +6,6 @@ export default function UseContext({ children }) {
   const [isToggled, setIsToggled] = useState(false)
   const [theme, setTheme] = useState("light")
   const navbarRef = useRef(null)
-  const [isTyping, setIsTyping] = useState(false)
 
   const toggle = () => {
     setIsToggled(prevState => !prevState)
@@ -17,11 +16,11 @@ export default function UseContext({ children }) {
   }
 
   function handleFocus() {
-    setIsTyping(true)
+    document.body.style.overflow = 'hidden'
   }
 
   function handleBlur() {
-    setIsTyping(false)
+    document.body.style.overflow = 'auto'
   }
  
   useEffect(() => {
@@ -42,7 +41,7 @@ export default function UseContext({ children }) {
     <ToggleContext.Provider value={
       { isToggled, toggle, theme, 
         toggleTheme, navbarRef,  setIsToggled,
-        handleBlur, handleFocus, isTyping
+        handleBlur, handleFocus
       }
     }>
       {children}

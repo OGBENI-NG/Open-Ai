@@ -23,9 +23,9 @@ export default function App() {
   const [userChat, setUserChat] = useState(saveUserChatToLocalStorage)
   const [loading, setLoading] = useState(false)
   const {
-    isToggled, toggle, isSticky, theme,
+    isToggled, toggle, theme,
     toggleTheme, navbarRef, setIsToggled,
-    handleBlur, handleFocus, isTyping
+    handleBlur, handleFocus
   } = useContext(ToggleContext)
 
   const themeIconImg = theme === "light" ? darkIcon : lightIcon
@@ -127,12 +127,10 @@ export default function App() {
 
   return (
     <main className={`font-roboto min-h-screen overflow-x-hidden 
-      ${userThemes} 
-      ${isTyping ? 'h-auto' : 'relative'}`
+      ${userThemes}`
     }>
       <Header
         headerBg={headerBg}
-        isSticky={isSticky}
         toggleTheme={toggleTheme}
         isToggled={isToggled}
         themeIconImg={themeIconImg}
@@ -144,21 +142,18 @@ export default function App() {
         navbarRef={navbarRef}
         dropDownIcon={dropDownIcon}
         currentLangImg={currentLangImg}
-        isTyping={isTyping}
       />
       <Main 
         renderAiResponse={renderAiResponse}
         userChat={userChat}
         loading={loading}
         theme={theme}
-        isSticky={isSticky}
       />
       <Footer
         inputValue={inputValue}
         sendBtnIcon={sendBtnIcon}
         handleChange={handleChange}
         handleSendText={handleSendText}
-        isTyping={isTyping}
         handleBlur={handleBlur}
         handleFocus={handleFocus}
       />
