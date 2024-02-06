@@ -15,8 +15,8 @@ export default function Header(
   return (
     <header
       ref={navbarRef}
-      className={`px-3 py-3 backdrop-blur-[100px] bg-white/50 z-[10]  
-      ${isTyping ? 'fixed top-0 left-0 ' : 'fixed w-full top-0 left-0'}`}
+      className={`px-3 py-3 backdrop-blur-[100px] bg-white/50 z-[10] w-full
+      ${isTyping ? 'fixed top-0 left-0 ' : 'fixed top-0 left-0'}`}
     >
       <div className='flex items-center'>
         <div className='flex items-center gap-3'>
