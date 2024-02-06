@@ -23,6 +23,17 @@ export default function UseContext({ children }) {
   function handleBlur() {
     setIsTyping(false)
   }
+  useEffect(() => {
+    if (isTyping) {
+      document.body.classList.add('overflow-hidden')
+    } else {
+      document.body.classList.remove('overflow-hidden')
+    }
+
+    return () => {
+      document.body.classList.remove('overflow-hidden')
+    }
+  }, [isTyping])
 
   useEffect(() => {
     const handleClickOutside = (event) => {
