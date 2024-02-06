@@ -122,7 +122,7 @@ export default function App() {
   const userThemes = theme === "light" ? `bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-yellow-200 via-red-500 to-fuchsia-500` : `bg-[conic-gradient(at_right,_var(--tw-gradient-stops))] from-slate-900 via-purple-900 to-slate-900`
 
   return (
-    <main className={`font-roboto min-h-[100vh] overflow-x-auto ${userThemes}`}>
+    <main className={`font-roboto h-full min-h-[auto] overflow-x-auto ${userThemes}`}>
       <Header
         headerBg={headerBg}
         isSticky={isSticky}

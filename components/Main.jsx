@@ -11,8 +11,7 @@ export default function Main({ renderAiResponse, userChat}) {
                 px-3 mx-14 pt-3 pb-4 my-6`}
             >
               Select the language you 
-              me to translate into, 
-              type your text and hit send!
+              me to translate into.
           </h1>
           {userChat.map((txt, i) => (
             <section key={i}>
