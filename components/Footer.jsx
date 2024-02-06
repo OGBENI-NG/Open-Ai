@@ -45,20 +45,6 @@ export default function Footer(
           alt="send-btn-icon" 
         />
       </div>
-      
-     
-      {/* <section className='px-4 py-2 fixed w-full bottom-[0] left-[0] backdrop-blur-[100px]
-            bg-white/50'>
-             { loading 
-              ? (<span className="loading loading-dots loading-md text-aiChatBg"></span>) 
-              : (<p 
-                onClick={clearChat}
-                className={`${userChat.length < 4 ? "hidden" : `text-gray-500 font-semibold py-1 px-4 w-max bg-txtAreaBg rounded-md mb-2 m-auto`}`}>
-              Clear chat
-            </p>)} 
-            
-          </section> */}
-          
     </div>
   )
 }
