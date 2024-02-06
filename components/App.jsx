@@ -126,9 +126,9 @@ export default function App() {
   const userThemes = theme === "light" ? `bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-yellow-200 via-red-500 to-fuchsia-500` : `bg-[conic-gradient(at_right,_var(--tw-gradient-stops))] from-slate-900 via-purple-900 to-slate-900`
 
   return (
-    <main className={`font-roboto min-h-[100dvh] overflow-x-hidden 
+    <main className={`font-roboto min-h-screen overflow-x-hidden 
       ${userThemes}
-      ${isTyping ? 'fixed overflow-x-hidden' : ''}`
+      ${isTyping ? 'fixed overflow-x-hidden h-full' : ''}`
     }>
       <Header
         headerBg={headerBg}
