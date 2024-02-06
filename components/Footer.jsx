@@ -22,7 +22,8 @@ export default function Footer(
 
   return (
     <footer className={`fixed z-[5] w-full bottom-0 left-0 
-      backdrop-blur-[100px] bg-white/50 px-4 py-3 overflow-x-hidden`
+      backdrop-blur-[100px] bg-white/50 px-4 py-3 
+      ${isTyping ? 'fixed overflow-x-hidden' : ''}`
     }>
       <div className='flex items-center gap-2'>
         <textarea
