@@ -15,7 +15,7 @@ export default function NavBar({firebaseData, clearChat, handleLanguage,
         before:absolute before:border-[1.5px] before:rounded-lg before:border-red-300
         before:bottom-[0] before:-left-[0] before:shadow-lg
         before:shadow-boxShadow before:right-[0] before:-mx-[12px]` : ""}
-      ${transitLanBg ? `before:bg-red-50 before:top-[12px]
+      ${transitLanBg ? `before:bg-white/30 before:top-[12px]
       before:backdrop-blur-[100px] before:-z-[1]` : ""}
     `;
   
