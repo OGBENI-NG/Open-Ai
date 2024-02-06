@@ -127,8 +127,7 @@ export default function App() {
 
   return (
     <main className={`font-roboto min-h-screen overflow-x-hidden 
-      ${userThemes} 
-      ${isTyping ? 'overflow-x-visible' : 'relative'}`
+      ${userThemes}`
     }>
       <Header
         headerBg={headerBg}
