@@ -5,10 +5,10 @@ export default function Main({ renderAiResponse, userChat}) {
     <main className={`bg-transparent 
     rounded-[15px] relative z-[1]`}>
       <section className='flex flex-col gap-5 relative'>
-       <section className='px-3 py-16'>
+       <section className='px-3 py-16 h-screen'>
           <h1 className={`relative text-center font-[900] text-sm rounded-[8px] 
               text-[#000] tracking-[0.011rem] backdrop-blur-[100px] bg-white/50 
-                px-0 mx-14 py-2 my-6`}
+              px-0 mx-14 py-2 my-6`}
             >
               Select the language you 
               me to translate into.
