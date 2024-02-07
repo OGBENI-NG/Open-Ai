@@ -3,10 +3,10 @@ import React from 'react'
 export default function Main({ renderAiResponse, userChat, loading, containerRef}) {
   return (
     <main className={`bg-transparent rounded-[15px] relative z-[1]`}>
-      <section className='flex flex-col gap-5 relative'>
+      <section className='flex flex-col gap-5'>
         <section 
           ref={containerRef}
-          className={`px-3 py-[70px] h-auto scroll-smooth overflow-auto`}
+          className={`px-3 py-[70px] h-auto scroll-smooth`}
         >
           <h1 className={`text-center font-[900] text-sm rounded-[8px] 
             text-[#1e1c28] w-48 tracking-[0.011rem] backdrop-blur-[100px]
@@ -18,7 +18,7 @@ export default function Main({ renderAiResponse, userChat, loading, containerRef
           {userChat.map((txt, i) => (
             <section key={i} className='transition-all'>
               <p className='font-bold text-[20px] rounded-[10px] rounded-tl-[1px]
-                text-bodyBg leading-[26px] bg-black/60 backdrop-blur-[50px]
+                text-bodyBg leading-[26px] bg-black/75 backdrop-blur-[50px]
                 px-4 pt-3 pb-5 
                 '
               >
@@ -28,7 +28,7 @@ export default function Main({ renderAiResponse, userChat, loading, containerRef
                 {renderAiResponse[i] && (
                   <p className='font-bold -tracking-tighter text-[20px] rounded-[10px] 
                     rounded-tr-[1px] text-[#000] leading-[26px] backdrop-blur-[100px]
-                    bg-white/50 p-3 my-4'
+                    bg-white/75 p-3 my-4'
                   >
                     {renderAiResponse[i]}
                   </p>

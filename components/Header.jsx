@@ -14,7 +14,7 @@ export default function Header(
   return (
     <header
       ref={navbarRef}
-      className={`px-3 py-4 backdrop-blur-[100px] bg-white/40 
+      className={`px-3 py-4 backdrop-blur-[100px] bg-white/75 
       fixed w-full z-[10] top-0 left-0 
       `}
     >
@@ -24,7 +24,7 @@ export default function Header(
           <p className='font-semibold text-xl text-userTxt'>To</p>
           <div 
             onClick={toggle} 
-            className='flex items-center gap-3 bg-white/30 px-2 rounded-lg '>
+            className='flex items-center gap-3 bg-white/35 px-2 rounded-lg '>
             <img 
               src={currentLangImg} 
               alt="current-language-img" 

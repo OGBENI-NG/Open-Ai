@@ -42,7 +42,7 @@ export default function NavBar({firebaseData, clearChat, handleLanguage,
     
   return (
     <nav className={`absolute left-[0px] top-[71px] transition-all overflow-hidden
-      overflow-x-hidden pb-4 backdrop-blur-[100px] bg-white/40 w-[191px] 
+      overflow-x-hidden pb-4 backdrop-blur-[100px] bg-white/75 w-[191px] 
       ${isToggled ? 'h-[238px] ' : 'h-[0] opacity-0'} rounded-b-lg`}
     >
       {renderFlag}

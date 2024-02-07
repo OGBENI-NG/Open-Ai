@@ -22,7 +22,7 @@ export default function Footer(
 
   return (
     <footer className={`fixed z-[10] w-full bottom-0 left-0 
-      backdrop-blur-[100px] bg-white/40 px-3 py-4 
+      backdrop-blur-[100px] bg-white/75 px-3 py-4 
       `
     }>
       <div className='flex items-center gap-2'>
