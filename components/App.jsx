@@ -136,37 +136,39 @@ export default function App() {
       flex flex-col overflow-hidden
       `
     }>
-      <Header
-        headerBg={headerBg}
-        toggleTheme={toggleTheme}
-        isToggled={isToggled}
-        themeIconImg={themeIconImg}
-        toggle={toggle}
-        currentLanguage={currentLanguage}
-        handleLanguage={handleLanguage}
-        firebaseData={firebaseData}
-        clearChat={clearChat}
-        navbarRef={navbarRef}
-        dropDownIcon={dropDownIcon}
-        currentLangImg={currentLangImg}
-        isKeyboardOpen={isKeyboardOpen}
-      />
-      <Main 
-        renderAiResponse={renderAiResponse}
-        userChat={userChat}
-        loading={loading}
-        theme={theme}
-        userThemes={userThemes}
-        containerRef={containerRef}
-      />
-      <Footer
-        inputValue={inputValue}
-        sendBtnIcon={sendBtnIcon}
-        handleChange={handleChange}
-        handleSendText={handleSendText}
-        handleBlur={handleBlur}
-        handleFocus={handleFocus}
-      />
+      <section className='overflow-hidden'>
+        <Header
+          headerBg={headerBg}
+          toggleTheme={toggleTheme}
+          isToggled={isToggled}
+          themeIconImg={themeIconImg}
+          toggle={toggle}
+          currentLanguage={currentLanguage}
+          handleLanguage={handleLanguage}
+          firebaseData={firebaseData}
+          clearChat={clearChat}
+          navbarRef={navbarRef}
+          dropDownIcon={dropDownIcon}
+          currentLangImg={currentLangImg}
+          isKeyboardOpen={isKeyboardOpen}
+        />
+        <Main 
+          renderAiResponse={renderAiResponse}
+          userChat={userChat}
+          loading={loading}
+          theme={theme}
+          userThemes={userThemes}
+          containerRef={containerRef}
+        />
+        <Footer
+          inputValue={inputValue}
+          sendBtnIcon={sendBtnIcon}
+          handleChange={handleChange}
+          handleSendText={handleSendText}
+          handleBlur={handleBlur}
+          handleFocus={handleFocus}
+        />
+      </section>
     </main>
   )
 }
