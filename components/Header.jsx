@@ -4,7 +4,7 @@ import NavBar from './NavBar'
 
 export default function Header(
   {
-    headerBg, themeIconImg, toggleTheme,
+    headerBg,
     navbarRef, currentLangImg, firebaseData,
     currentLanguage, handleLanguage, toggle,
     clearChat, dropDownIcon, isToggled, isKeyboardOpen
@@ -14,7 +14,7 @@ export default function Header(
   return (
     <header
       ref={navbarRef}
-      className={`px-3 py-4 backdrop-blur-[100px] bg-white/50 
+      className={`px-3 py-4 backdrop-blur-[100px] bg-white/40 
       fixed w-full z-[10] top-0 left-0 
       ${isKeyboardOpen ? 'top-0 overflow-hidden' : ''}`}
     >
@@ -24,7 +24,7 @@ export default function Header(
           <p className='font-semibold text-xl text-userTxt'>To</p>
           <div 
             onClick={toggle} 
-            className='flex items-center gap-3 bg-white/40 px-2 rounded-lg '>
+            className='flex items-center gap-3 bg-white/30 px-2 rounded-lg '>
             <img 
               src={currentLangImg} 
               alt="current-language-img" 
@@ -36,9 +36,6 @@ export default function Header(
               alt="dropdown-icon" 
             />
           </div>
-        </div>
-        <div className='ml-auto' onClick={toggleTheme}>
-          <img className='w-[40px] h-[40px]' src={themeIconImg} alt="theme-icon" />
         </div>
       </div>
       <NavBar 

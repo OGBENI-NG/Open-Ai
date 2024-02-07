@@ -4,9 +4,7 @@ import Header from './Header'
 import headerBg from './img/usa-icon.png'
 import dropDownIcon from './img/dropdown.png'
 import sendBtnIcon from './img/send-icon.png'
-import darkIcon from './img/dark.png'
 import Main from './Main'
-import lightIcon from './img/light.png'
 import spanishFlag from './img/spain.png'
 import Footer from './Footer'
 import { ToggleContext } from './UseContext'
@@ -14,7 +12,6 @@ import {fetchApiKey, fetchApiNewKey} from '../firebase'
 
 export default function App() {
   const [firebaseData, setFirebaseData] = useState([])
-
   const [inputValue, setInputValue] = useState('')
   const [currentLanguage, setCurrentLanguage] = useState("Spanish")
   const [currentLangImg, setCurrentLangImg] = useState(spanishFlag)
@@ -26,10 +23,10 @@ export default function App() {
   const {
     isToggled, toggle, theme,
     toggleTheme, navbarRef, setIsToggled,
-    handleBlur, handleFocus, isKeyboardOpen
+    handleBlur, handleFocus,
   } = useContext(ToggleContext)
 
-  const themeIconImg = theme === "light" ? darkIcon : lightIcon
+
 
 
   function saveUserChatToLocalStorage() {
@@ -110,8 +107,7 @@ export default function App() {
         messages: messages,
         temperature: 0.7,
         max_tokens: 54,
-        top_p: 1,
-       
+        top_p: 1
       })
       setRenderAiResponse(prevAiRes => [...prevAiRes, response.choices[0].message.content])
     } catch (error) {
@@ -129,18 +125,15 @@ export default function App() {
     }
   }
 
-  const userThemes = theme === "light" ? `bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-yellow-200 via-red-500 to-fuchsia-500` : `bg-[conic-gradient(at_right,_var(--tw-gradient-stops))] from-slate-900 via-purple-900 to-slate-900`
-
   return (
-    <main className={`font-roboto scroll-smooth ${userThemes}
-      flex flex-col overflow-hidden
+    <main className={`font-roboto scroll-smooth
+      flex flex-col overflow-hidden bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-yellow-300 via-red-600 to-fuchsia-700
       `
     }>
       <Header
         headerBg={headerBg}
         toggleTheme={toggleTheme}
         isToggled={isToggled}
-        themeIconImg={themeIconImg}
         toggle={toggle}
         currentLanguage={currentLanguage}
         handleLanguage={handleLanguage}
@@ -149,14 +142,12 @@ export default function App() {
         navbarRef={navbarRef}
         dropDownIcon={dropDownIcon}
         currentLangImg={currentLangImg}
-        isKeyboardOpen={isKeyboardOpen}
       />
       <Main 
         renderAiResponse={renderAiResponse}
         userChat={userChat}
         loading={loading}
         theme={theme}
-        userThemes={userThemes}
         containerRef={containerRef}
       />
       <Footer
