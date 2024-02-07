@@ -6,8 +6,7 @@ export default function Main({ renderAiResponse, userChat, loading, containerRef
       <section className='flex flex-col gap-5 relative overflow-hidden'>
         <section 
           ref={containerRef}
-          className={`px-3 py-16  
-            ${userChat.length > 4 ? 'overflow-x-scroll' : 'overflow-hidden min-h-screen'} scroll-smooth`}
+          className={`px-3 py-16 h-screen scroll-smooth overflow-x-scroll`}
         >
           <h1 className={`text-center font-[900] text-sm rounded-[8px] 
             text-[#000] w-48 tracking-[0.011rem] backdrop-blur-[100px]
@@ -17,7 +16,7 @@ export default function Main({ renderAiResponse, userChat, loading, containerRef
             me to translate into.
           </h1>
           {userChat.map((txt, i) => (
-            <section key={i}>
+            <section key={i} className='transition-all'>
               <p className='font-bold text-[20px] rounded-[10px] rounded-tl-[1px]
                 text-bodyBg leading-[26px] bg-black/60 backdrop-blur-[50px]
                 px-4 pt-3 pb-5 
