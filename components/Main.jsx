@@ -6,8 +6,8 @@ export default function Main({ renderAiResponse, userChat, loading, containerRef
       <section className='flex flex-col gap-5 relative overflow-hidden'>
         <section 
           ref={containerRef}
-          className={`px-3 py-16 min-h-screen 
-            ${userChat.length > 4 ? 'overflow-x-scroll' : 'overflow-hidden'} scroll-smooth`}
+          className={`px-3 py-16  
+            ${userChat.length > 4 ? 'overflow-x-scroll' : 'overflow-hidden min-h-screen'} scroll-smooth`}
         >
           <h1 className={`text-center font-[900] text-sm rounded-[8px] 
             text-[#000] w-48 tracking-[0.011rem] backdrop-blur-[100px]
