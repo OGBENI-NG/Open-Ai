@@ -5,7 +5,28 @@ const ToggleContext = createContext()
 export default function UseContext({ children }) {
   const [isToggled, setIsToggled] = useState(false)
   const [theme, setTheme] = useState("light")
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false)
   const navbarRef = useRef(null)
+
+
+  useEffect(() => {
+    const observer = new ResizeObserver(entries => {
+      for (let entry of entries) {
+        // Check if viewport height decreased (indicating keyboard opening)
+        if (entry.contentRect.height < entry.contentRect.width) {
+          setIsKeyboardOpen(true)
+        } else {
+          setIsKeyboardOpen(false)
+        }
+      }
+    })
+
+    observer.observe(document.documentElement)
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
 
   const toggle = () => {
     setIsToggled(prevState => !prevState)
@@ -33,6 +54,7 @@ export default function UseContext({ children }) {
     <ToggleContext.Provider value={
       { isToggled, toggle, theme, 
         toggleTheme, navbarRef,  setIsToggled,
+        isKeyboardOpen
       }
     }>
       {children}

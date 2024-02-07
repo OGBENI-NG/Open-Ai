@@ -26,7 +26,7 @@ export default function App() {
   const {
     isToggled, toggle, theme,
     toggleTheme, navbarRef, setIsToggled,
-    handleBlur, handleFocus
+    handleBlur, handleFocus, isKeyboardOpen
   } = useContext(ToggleContext)
 
   const themeIconImg = theme === "light" ? darkIcon : lightIcon
@@ -149,6 +149,7 @@ export default function App() {
         navbarRef={navbarRef}
         dropDownIcon={dropDownIcon}
         currentLangImg={currentLangImg}
+        isKeyboardOpen={isKeyboardOpen}
       />
       <Main 
         renderAiResponse={renderAiResponse}
