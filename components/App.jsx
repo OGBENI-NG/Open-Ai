@@ -133,10 +133,10 @@ export default function App() {
 
   return (
     <main className={`font-roboto scroll-smooth ${userThemes}
-      flex flex-col overflow-hidden
+      flex flex-col overflow-y-hidden
       `
     }>
-      <section className='overflow-hidden'>
+      <section className='overflow-y-hidden'>
         <Header
           headerBg={headerBg}
           toggleTheme={toggleTheme}

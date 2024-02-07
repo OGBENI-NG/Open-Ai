@@ -6,11 +6,11 @@ export default function Main({ renderAiResponse, userChat, loading, containerRef
       <section className='flex flex-col gap-5 relative overflow-hidden'>
         <section 
           ref={containerRef}
-          className={`px-3 py-16 h-screen scroll-smooth overflow-y-hidden`}
+          className={`px-3 py-16 h-screen scroll-smooth overflow-x-hidden`}
         >
           <h1 className={`text-center font-[900] text-sm rounded-[8px] 
             text-[#1e1c28] w-48 tracking-[0.011rem] backdrop-blur-[100px]
-            bg-white/50  py-2 my-7  p-3 m-auto`
+            bg-white/50 py-2 my-7  p-3 m-auto`
           }>
             Select the language you 
             me to translate into.
