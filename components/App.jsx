@@ -133,42 +133,41 @@ export default function App() {
 
   return (
     <main className={`font-roboto scroll-smooth ${userThemes}
-      flex flex-col overflow-y-hidden
+      flex flex-col overflow-hidden
       `
     }>
-      <section className='overflow-y-hidden'>
-        <Header
-          headerBg={headerBg}
-          toggleTheme={toggleTheme}
-          isToggled={isToggled}
-          themeIconImg={themeIconImg}
-          toggle={toggle}
-          currentLanguage={currentLanguage}
-          handleLanguage={handleLanguage}
-          firebaseData={firebaseData}
-          clearChat={clearChat}
-          navbarRef={navbarRef}
-          dropDownIcon={dropDownIcon}
-          currentLangImg={currentLangImg}
-          isKeyboardOpen={isKeyboardOpen}
-        />
-        <Main 
-          renderAiResponse={renderAiResponse}
-          userChat={userChat}
-          loading={loading}
-          theme={theme}
-          userThemes={userThemes}
-          containerRef={containerRef}
-        />
-        <Footer
-          inputValue={inputValue}
-          sendBtnIcon={sendBtnIcon}
-          handleChange={handleChange}
-          handleSendText={handleSendText}
-          handleBlur={handleBlur}
-          handleFocus={handleFocus}
-        />
-      </section>
+      <Header
+        headerBg={headerBg}
+        toggleTheme={toggleTheme}
+        isToggled={isToggled}
+        themeIconImg={themeIconImg}
+        toggle={toggle}
+        currentLanguage={currentLanguage}
+        handleLanguage={handleLanguage}
+        firebaseData={firebaseData}
+        clearChat={clearChat}
+        navbarRef={navbarRef}
+        dropDownIcon={dropDownIcon}
+        currentLangImg={currentLangImg}
+        isKeyboardOpen={isKeyboardOpen}
+      />
+      <Main 
+        renderAiResponse={renderAiResponse}
+        userChat={userChat}
+        loading={loading}
+        theme={theme}
+        userThemes={userThemes}
+        containerRef={containerRef}
+      />
+      <Footer
+        inputValue={inputValue}
+        sendBtnIcon={sendBtnIcon}
+        handleChange={handleChange}
+        handleSendText={handleSendText}
+        handleBlur={handleBlur}
+        handleFocus={handleFocus}
+      />
+      
     </main>
   )
 }
