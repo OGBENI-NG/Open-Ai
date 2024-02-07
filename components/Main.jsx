@@ -3,8 +3,8 @@ import React from 'react'
 export default function Main({ renderAiResponse, userChat, loading, containerRef}) {
   return (
     <main 
-      ref={containerRef} 
-      className={`bg-transparent pt-[65px] pb-[75px] overflow-x-hidden  h-full relative z-[1]`}
+      ref={userChat && containerRef} 
+      className={`bg-transparent pt-[65px] pb-[85px] overflow-x-hidden  h-full relative z-[1]`}
     >
       <h1 className={`text-center font-[900] text-sm rounded-[8px] 
         text-[#1e1c28] w-48 tracking-[0.011rem] backdrop-blur-[100px]
