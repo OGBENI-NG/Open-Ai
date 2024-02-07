@@ -1,9 +1,15 @@
 import React from 'react'
 
 export default function Main({ renderAiResponse, userChat, loading, containerRef}) {
+
+  const isNewChat = (timestamp) => {
+    const currentTime = Date.now();
+    const isNewThreshold = 1000; // Consider todos as new if created within the last minute
+    return currentTime - timestamp < isNewThreshold;
+  }
   return (
     <main 
-      ref={userChat && containerRef} 
+      ref={containerRef} 
       className={`bg-transparent pt-[65px] pb-[85px] overflow-x-hidden  h-full relative z-[1]`}
     >
       <h1 className={`text-center font-[900] text-sm rounded-[8px] 
