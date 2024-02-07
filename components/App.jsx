@@ -130,8 +130,7 @@ export default function App() {
       flex flex-col bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-yellow-300 via-red-600 to-fuchsia-700 m-0
       `
     }>
-     <div className='overflow-y-scroll h-full'>
-     <Header
+      <Header
         headerBg={headerBg}
         toggleTheme={toggleTheme}
         isToggled={isToggled}
@@ -159,8 +158,6 @@ export default function App() {
         handleBlur={handleBlur}
         handleFocus={handleFocus}
       />
-     </div>
-      
     </main>
   )
 }
