@@ -7,7 +7,7 @@ export default function Header(
     headerBg,
     navbarRef, currentLangImg, firebaseData,
     currentLanguage, handleLanguage, toggle,
-    clearChat, dropDownIcon, isToggled, isKeyboardOpen
+    clearChat, dropDownIcon, isToggled
   }
   ) {
     
@@ -15,8 +15,8 @@ export default function Header(
     <header
       ref={navbarRef}
       className={`px-3 py-4 backdrop-blur-[100px] bg-white/40 
-      fixed w-full z-[10] top-0 left-0 
-      ${isKeyboardOpen ? 'top-0 overflow-hidden' : ''}`}
+      sticky w-full z-[10] top-0 left-0 
+      `}
     >
       <div className='flex items-center'>
         <div className='flex items-center gap-3'>
