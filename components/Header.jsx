@@ -16,7 +16,7 @@ export default function Header(
       ref={navbarRef}
       className={`h-max px-3 py-4 backdrop-blur-[100px] bg-white/50 
       fixed w-full z-[10] top-0 left-0 
-      ${isKeyboardOpen ? 'top-0' : ''}`}
+      ${isKeyboardOpen ? 'bottom-0' : ''}`}
     >
       <div className='flex items-center'>
         <div className='flex items-center gap-3'>
