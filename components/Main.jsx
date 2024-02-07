@@ -1,18 +1,16 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 
 export default function Main({ renderAiResponse, userChat, loading, containerRef}) {
-
-
   return (
-    <main className={`bg-transparent 
-    rounded-[15px] relative z-[1]`}>
+    <main className={`bg-transparent rounded-[15px] relative z-[1]`}>
       <section className='flex flex-col gap-5 relative'>
-       <section 
-        ref={containerRef}
-        className='px-3 py-16 h-screen overflow-x-scroll scroll-smooth'>
+        <section 
+          ref={containerRef}
+          className='px-3 py-16 max-h-screen overflow-x-scroll scroll-smooth'
+        >
           <h1 className={`text-center font-[900] text-sm rounded-[8px] 
-            text-[#000] tracking-[0.011rem] backdrop-blur-[100px]
-            bg-white/50  py-2 my-7 w-max p-3 m-auto`
+            text-[#000] w-48 tracking-[0.011rem] backdrop-blur-[100px]
+            bg-white/50  py-2 my-7  p-3 m-auto`
           }>
             Select the language you 
             me to translate into.
@@ -20,9 +18,10 @@ export default function Main({ renderAiResponse, userChat, loading, containerRef
           {userChat.map((txt, i) => (
             <section key={i}>
               <p className='font-bold text-[20px] rounded-[10px] rounded-tl-[1px]
-              text-bodyBg leading-[26px] bg-black/60 backdrop-blur-[50px]
-               px-4 pt-3 pb-5 
-                '>
+                text-bodyBg leading-[26px] bg-black/60 backdrop-blur-[50px]
+                px-4 pt-3 pb-5 
+                '
+              >
                 {txt}
               </p>
               <div>
@@ -32,7 +31,7 @@ export default function Main({ renderAiResponse, userChat, loading, containerRef
                     bg-white/50 p-3 my-4'
                   >
                     {renderAiResponse[i]}
-                    </p>
+                  </p>
                 )}
               </div>
             </section>
