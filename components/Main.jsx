@@ -3,10 +3,10 @@ import React from 'react'
 export default function Main({ renderAiResponse, userChat, loading, containerRef}) {
   return (
     <main className={`bg-transparent rounded-[15px] relative z-[1]`}>
-      <section className='flex flex-col gap-5 relative'>
+      <section className='flex flex-col gap-5 relative overflow-hidden'>
         <section 
           ref={containerRef}
-          className='px-3 py-16 max-h-screen overflow-x-scroll scroll-smooth'
+          className='px-3 py-16 min-h-screen overflow-x-scroll scroll-smooth'
         >
           <h1 className={`text-center font-[900] text-sm rounded-[8px] 
             text-[#000] w-48 tracking-[0.011rem] backdrop-blur-[100px]
