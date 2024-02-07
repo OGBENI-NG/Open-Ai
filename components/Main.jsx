@@ -6,7 +6,7 @@ export default function Main({ renderAiResponse, userChat, loading, containerRef
       <section className='flex flex-col gap-5'>
         <section 
           ref={containerRef}
-          className={`px-3 py-[70px] h-auto overflow-y-hidden`}
+          className={`px-3 pt-[70px] h-auto overflow-y-hidden`}
         >
           <h1 className={`text-center font-[900] text-sm rounded-[8px] 
             text-[#1e1c28] w-48 tracking-[0.011rem] backdrop-blur-[100px]
