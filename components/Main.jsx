@@ -10,7 +10,7 @@ export default function Main({ renderAiResponse, userChat, loading, containerRef
   return (
     <main 
       ref={containerRef} 
-      className={`bg-transparent pt-[65px] pb-[85px] overflow-x-hidden  h-full relative z-[1]`}
+      className={`bg-transparent pt-[65px] pb-[0px] overflow-x-hidden  h-full relative z-[1]`}
     >
       <h1 className={`text-center font-[900] text-sm rounded-[8px] 
         text-[#1e1c28] w-48 tracking-[0.011rem] backdrop-blur-[100px]
@@ -21,13 +21,13 @@ export default function Main({ renderAiResponse, userChat, loading, containerRef
       </h1>
       {userChat.map((txt, i) => (
         <section key={i} className='transition-all'>
-          <div className="chat chat-start">
+          <div className="chat chat-end">
             <p className="chat-bubble text-lg font-semibold text-bodyBg leading-[26px] bg-amber-900 backdrop-blur-[50px]">{txt}</p>
           </div>
           
           <div>
             {renderAiResponse[i] && (
-              <div className="chat chat-end my-2">
+              <div className="chat chat-start my-2">
                 <p className="chat-bubble text-[#000] text-lg leading-[26px] backdrop-blur-[100px] font-semibold bg-white/75">{renderAiResponse[i]}</p>
               </div>
             )}
