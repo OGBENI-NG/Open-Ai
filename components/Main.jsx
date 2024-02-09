@@ -16,13 +16,13 @@ export default function Main({ renderAiResponse, userChat, loading, containerRef
         me to translate into.
       </h1>
       {userChat.map((txt, i) => (
-        <section key={i} className='transition-all'>
-          <div className="chat chat-end">
+        <section key={i} className=''>
+          <div className="chat chat-end transition-all">
             <p className="chat-bubble text-lg font-semibold text-bodyBg leading-[26px] bg-amber-900 backdrop-blur-[50px]">{txt}</p>
           </div>
           <div>
             {renderAiResponse[i] && (
-              <div className="chat chat-start my-2">
+              <div className="chat chat-start my-2 transition-all">
                 <p className="chat-bubble text-[#000] text-lg leading-[26px] backdrop-blur-[100px] font-semibold bg-white/75">{renderAiResponse[i]}</p>
               </div>
             )}
