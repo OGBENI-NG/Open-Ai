@@ -15,7 +15,7 @@ export default function Header(
     <header
       ref={navbarRef}
       className={`px-3 py-4 backdrop-blur-[100px] bg-white/75 
-      fixed w-full z-[10] top-0 left-0 
+      fixed w-full z-[1] top-0 left-0 
       `}
     >
       <div className='flex items-center'>

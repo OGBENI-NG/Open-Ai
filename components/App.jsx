@@ -130,7 +130,7 @@ export default function App() {
 
   return (
     <main className={`font-roboto scroll-smooth h-screen overflow-hidden
-      flex flex-col bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-yellow-300 via-red-600 to-fuchsia-700 m-0
+      flex flex-col bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-yellow-300 via-red-600 to-fuchsia-700 m-0 -z-0
       `
     }>
       <Header
