@@ -6,7 +6,7 @@ export default function Main({ renderAiResponse, userChat, loading, containerRef
     <main 
       ref={containerRef} 
       className={`bg-transparent transition-all pt-[65px] pb-[85px] 
-      px-2 overflow-x-scroll  h-full relative z-[0]`}
+      px-2 overflow-x-scroll  h-full relative -z-[0]`}
     >
       <h1 className={`text-center font-[900] text-sm rounded-[8px] 
         text-[#1e1c28] w-48 tracking-[0.011rem] backdrop-blur-[100px]
