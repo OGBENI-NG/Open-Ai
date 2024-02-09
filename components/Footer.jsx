@@ -1,4 +1,4 @@
-import React,{useEffect, useRef} from 'react'
+import React,{useEffect} from 'react'
 
 export default function Footer(
     {
@@ -11,27 +11,27 @@ export default function Footer(
   useEffect(() => {
     function handleKeyPress(e) {
       if (e.key === 'Enter' || inputValue.length > 28) {
-        textareaRef.current.style.borderRadius = '16px';
+        textareaRef.current.style.borderRadius = '16px'
       } else if (inputValue === "") {
-        textareaRef.current.style.borderRadius = '100px';
-        textareaRef.current.style.height = '40px'; // Reset height to 40px when value is empty
+        textareaRef.current.style.borderRadius = '100px'
+        textareaRef.current.style.height = '40px' // Reset height to 40px when value is empty
       } else {
-        textareaRef.current.style.borderRadius = '100px';
+        textareaRef.current.style.borderRadius = '100px'
       }
     }
   
-    textareaRef.current.addEventListener('keydown', handleKeyPress);
+    textareaRef.current.addEventListener('keydown', handleKeyPress)
   
     return () => {
-      textareaRef.current.removeEventListener('keydown', handleKeyPress);
-    };
-  }, [inputValue]);
+      textareaRef.current.removeEventListener('keydown', handleKeyPress)
+    }
+  }, [inputValue])
   
   
   
 
   return (
-    <footer className={`fixed z-[10] w-full bottom-0 left-0 
+    <footer className={`absolute z-[10] w-full bottom-0 left-0 
       backdrop-blur-[100px] bg-white/75 px-3 pt-4 pb-8
       `
     }>
