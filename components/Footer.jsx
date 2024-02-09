@@ -3,25 +3,35 @@ import React,{useEffect, useRef} from 'react'
 export default function Footer(
     {
       handleChange, inputValue, handleSendText,
-      sendBtnIcon
+      sendBtnIcon, textareaRef
     }
   ) {
-  const textareaRef = useRef(null)
+  
 
   useEffect(() => {
-    if (inputValue === '') {
-      // Reset height to normal when inputValue becomes empty
-      textareaRef.current.style.height = '40px'
-      textareaRef.current.style.borderRadius = '100px'
-    } else if(inputValue.length > 28) {
-      textareaRef.current.style.borderRadius = '16px'
-    } else {
-      textareaRef.current.style.borderRadius = '100px'
+    function handleKeyPress(e) {
+      if (e.key === 'Enter' || inputValue.length > 28) {
+        textareaRef.current.style.borderRadius = '16px';
+      } else if (inputValue === "") {
+        textareaRef.current.style.borderRadius = '100px';
+        textareaRef.current.style.height = '40px'; // Reset height to 40px when value is empty
+      } else {
+        textareaRef.current.style.borderRadius = '100px';
+      }
     }
-  }, [inputValue])
+  
+    textareaRef.current.addEventListener('keydown', handleKeyPress);
+  
+    return () => {
+      textareaRef.current.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [inputValue]);
+  
+  
+  
 
   return (
-    <footer className={`
+    <footer className={`fixed z-[10] w-full bottom-0 left-0 
       backdrop-blur-[100px] bg-white/75 px-3 pt-4 pb-8
       `
     }>

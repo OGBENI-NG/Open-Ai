@@ -20,6 +20,7 @@ export default function App() {
   const [userChat, setUserChat] = useState(saveUserChatToLocalStorage)
   const [loading, setLoading] = useState(false)
   const containerRef = useRef(null)
+  const textareaRef = useRef(null)
   const {
     isToggled, toggle, theme,
     toggleTheme, navbarRef, setIsToggled,
@@ -121,6 +122,8 @@ export default function App() {
     if(inputValue.trim("")) {
       setUserChat(prevUserChat => [...prevUserChat, inputValue]) 
       fetchData()
+      textareaRef.current.style.height = '40px'
+      textareaRef.current.style.borderRadius = '100px'
       setInputValue("")
     }
   }
@@ -152,11 +155,13 @@ export default function App() {
       />
       <Footer
         inputValue={inputValue}
+        setInputValue={setInputValue}
         sendBtnIcon={sendBtnIcon}
         handleChange={handleChange}
         handleSendText={handleSendText}
         handleBlur={handleBlur}
         handleFocus={handleFocus}
+        textareaRef={textareaRef}
       />
     </main>
   )

@@ -46,7 +46,7 @@ export default function NavBar({firebaseData, clearChat, handleLanguage,
       ${isToggled ? 'h-[238px] ' : 'h-[0] opacity-0'} rounded-b-lg`}
     >
       {renderFlag}
-      <div className='mt-6 font-bold text-lg text-red-500 bg-red-100 
+      <div className='mt-6 font-bold text-lg text-red-700 bg-red-50 
         w-max m-auto py-0 px-4 rounded-full'
       >
         <button onClick={clearChat}>Clear chat</button>
