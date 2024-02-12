@@ -1,41 +1,51 @@
-import React, { createContext, useState, useEffect, useRef } from 'react'
+import React, { createContext, useState, useEffect, useRef } from 'react';
 
-const ToggleContext = createContext()
+// Create a context for toggling functionality
+const ToggleContext = createContext();
 
 export default function UseContext({ children }) {
-  const [isToggled, setIsToggled] = useState(false)
-  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false)
-  const navbarRef = useRef(null)
+  // State for toggling navigation menu
+  const [isToggled, setIsToggled] = useState(false);
+  // State for detecting if the keyboard is open (not used in this component)
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+  // Reference to the navigation bar element
+  const navbarRef = useRef(null);
 
-
+  // Function to toggle the navigation menu
   const toggle = () => {
-    setIsToggled(prevState => !prevState)
-  }
+    setIsToggled(prevState => !prevState);
+  };
 
+  // Effect to handle clicks outside the navigation bar to close the menu
   useEffect(() => {
     const handleClickOutside = (event) => {
+      // Check if the click is outside the navigation bar
       if (navbarRef.current && !navbarRef.current.contains(event.target)) {
-        setIsToggled(false)
+        setIsToggled(false); // Close the menu
       }
-    }
+    };
 
-    document.addEventListener('click', handleClickOutside)
+    document.addEventListener('click', handleClickOutside);
 
+    // Cleanup function to remove event listener
     return () => {
-      document.removeEventListener('click', handleClickOutside)
-    }
-  }, [])
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []); // Run this effect only once when the component mounts
 
+  // Provide the context values to its children components
   return (
-    <ToggleContext.Provider value={
-      { isToggled, toggle, 
-         navbarRef,  setIsToggled,
-        isKeyboardOpen
-      }
-    }>
-      {children}
+    <ToggleContext.Provider value={{
+      isToggled, // State for toggling navigation menu
+      toggle, // Function to toggle navigation menu
+      navbarRef, // Reference to the navigation bar element
+      setIsToggled, // Function to set the toggled state
+      isKeyboardOpen // State for detecting if the keyboard is open (not used in this component)
+    }}>
+      {children} {/* Render children components */}
     </ToggleContext.Provider>
-  )
+  );
 }
 
-export {ToggleContext}
+// Export the context for other components to consume
+export { ToggleContext };

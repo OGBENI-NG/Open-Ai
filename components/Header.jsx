@@ -1,17 +1,22 @@
 import React from 'react'
 import NavBar from './NavBar'
 
-
-export default function Header(
-  {
-    headerBg,
-    navbarRef, currentLangImg, firebaseData,
-    currentLanguage, handleLanguage, toggle,
-    clearChat, dropDownIcon, isToggled
-  }
-  ) {
+// Functional component for header section
+export default function Header({
+  headerBg, // Background image for header
+  navbarRef, // Reference to navigation bar
+  currentLangImg, // Image representing current language
+  firebaseData, // Firebase data for language options
+  currentLanguage, // Current selected language
+  handleLanguage, // Function to handle language change
+  toggle, // Function to toggle navigation menu
+  clearChat, // Function to clear chat history
+  dropDownIcon, // Dropdown icon
+  isToggled // Toggled state for navigation menu
+}) {
     
   return (
+    // Header section with dynamic styles and content
     <header
       ref={navbarRef}
       className={`px-3 py-4 backdrop-blur-[100px] bg-white/75 
@@ -38,6 +43,7 @@ export default function Header(
           </div>
         </div>
       </div>
+      {/* Render NavBar component with necessary props */}
       <NavBar 
         firebaseData={firebaseData}
         currentLanguage={currentLanguage}

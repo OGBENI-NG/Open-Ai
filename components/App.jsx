@@ -11,6 +11,7 @@ import { ToggleContext } from './UseContext'
 import {fetchApiKey, fetchApiNewKey} from '../firebase'
 
 export default function App() {
+  // State variables using useState hook
   const [firebaseData, setFirebaseData] = useState([])
   const [inputValue, setInputValue] = useState('')
   const [currentLanguage, setCurrentLanguage] = useState("Spanish")
@@ -19,40 +20,45 @@ export default function App() {
   const [renderAiResponse, setRenderAiResponse] = useState(saveUserAiChatToLocalStorage)
   const [userChat, setUserChat] = useState(saveUserChatToLocalStorage)
   const [loading, setLoading] = useState(false)
+
+  // Refs for DOM elements
   const containerRef = useRef(null)
   const textareaRef = useRef(null)
+
+  // Context variables
   const {
     isToggled, toggle, theme,
     toggleTheme, navbarRef, setIsToggled,
     handleBlur, handleFocus,
   } = useContext(ToggleContext)
 
-
-
-
+  // Function to retrieve user chat from localStorage
   function saveUserChatToLocalStorage() {
     const userChatMg = localStorage.getItem("userChat") 
     return userChatMg ? JSON.parse(userChatMg) : []
   }
 
+  // Function to retrieve AI chat responses from localStorage
   function saveUserAiChatToLocalStorage() {
     const aiChatResponse = localStorage.getItem("renderAiResponse")
     return aiChatResponse ? JSON.parse(aiChatResponse) : []
   }
 
+  // Effect hook to update localStorage with user chat and AI responses
   useEffect(() => {
     localStorage.setItem("userChat", JSON.stringify(userChat))
     localStorage.setItem("renderAiResponse", JSON.stringify(renderAiResponse))
   }, [userChat, renderAiResponse])
 
+  // Event handler for input change
   function handleChange(e) {
     const inputValue = e.target.value
-    // Adjust textarea height
     e.target.style.height = `${e.target.scrollHeight}px`
     const capitalizedInputValue = inputValue.charAt(0).toUpperCase() + inputValue.slice(1)
     setInputValue(capitalizedInputValue)
   }
   
+  // Function to handle language change
   function handleLanguage(lang, currentImg) {
     if(!currentLanguage.includes(lang)) {
       setCurrentLanguage(lang)
@@ -61,6 +67,7 @@ export default function App() {
     }
   }
 
+  // useEffect hook to fetch API key and initialize OpenAI client
   useEffect(() => {
     const getApi = async () => {
       const apiData = await fetchApiKey()
@@ -71,17 +78,18 @@ export default function App() {
     getApi()
   },[])
 
-
+  // Effect hook to scroll to bottom of chat container
   useEffect(() => {
     containerRef.current.scrollTop = containerRef.current.scrollHeight
   }, [userChat, renderAiResponse])
 
+  // Create OpenAI client instance
   const openai = new OpenAI({
     apiKey: renderApiKey,
     dangerouslyAllowBrowser: true
-    
   })
 
+  // Function to clear chat history
   function clearChat(){
     setRenderAiResponse([])
     setUserChat([])
@@ -89,6 +97,7 @@ export default function App() {
     localStorage.clear()
   }
   
+  // Messages array for OpenAI chat completion
   const messages = [
     {
       role: 'system',
@@ -100,6 +109,7 @@ export default function App() {
     }
   ]
   
+  // Function to fetch data from OpenAI chat API
   async function fetchData() {
     try {
       setLoading(true) // Set loading state to true
@@ -118,6 +128,7 @@ export default function App() {
     }
   }
 
+  // Function to handle sending text message
   function handleSendText() {
     if(inputValue.trim("")) {
       setUserChat(prevUserChat => [...prevUserChat, inputValue]) 
@@ -128,11 +139,13 @@ export default function App() {
     }
   }
 
+  // JSX rendering of the component
   return (
     <main className={`font-roboto scroll-smooth 
       flex flex-col overflow-hidden 
       `
     }>
+      {/* Header component */}
       <Header
         headerBg={headerBg}
         toggleTheme={toggleTheme}
@@ -146,6 +159,8 @@ export default function App() {
         dropDownIcon={dropDownIcon}
         currentLangImg={currentLangImg}
       />
+      
+      {/* Main component */}
       <Main 
         renderAiResponse={renderAiResponse}
         userChat={userChat}
@@ -153,6 +168,8 @@ export default function App() {
         theme={theme}
         containerRef={containerRef}
       />
+      
+      {/* Footer component */}
       <Footer
         inputValue={inputValue}
         setInputValue={setInputValue}
