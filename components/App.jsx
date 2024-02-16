@@ -104,7 +104,9 @@ export default function App() {
   const messages = [
     {
       role: 'system',
-      content: `Translate the following English text to ${currentLanguage}`
+      content: `Translate the following English text to ${currentLanguage} or 
+        Translate the following text to the corresponding language to English text
+      `
     },
     {
       role: 'user',
@@ -119,7 +121,9 @@ export default function App() {
       const response = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
         messages: messages,
-        temperature: 0.7,
+        temperature: 1.1,
+        presence_penalty: 0,
+        frequency_penalty: 0,
         max_tokens: 54,
         top_p: 1
       })
