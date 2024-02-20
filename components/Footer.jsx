@@ -31,6 +31,13 @@ export default function Footer({
     };
   }, [inputValue]);
 
+  const textareaData = {
+    minHeight: '40px', 
+    height: '40px', 
+    padding: '8px', 
+    fontSize: '22px'
+  }
+
   // Render the footer component with dynamic styles and content
   return (
     <footer className={`fixed z-[999] w-full bottom-0 left-0 
@@ -46,7 +53,7 @@ export default function Footer({
           type="text" 
           onChange={handleChange}  
           value={inputValue}
-          style={{minHeight: '40px', height: '40px', padding: '8px', fontSize: '22px'}}
+          style={textareaData}
           name='textInput'
           id='textInput'
           ref={textareaRef}

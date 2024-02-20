@@ -5,7 +5,8 @@ export default function Main({
   renderAiResponse, // Array of AI responses
   userChat, // Array of user messages
   loading, // Loading state
-  containerRef // Reference to main chat container
+  containerRef, // Reference to main chat container
+  toggleImgGen
 }) {
 
   //function to render userText and aiResponse
@@ -20,7 +21,11 @@ export default function Main({
           {/* AI response */}
           {renderAiResponse[i] && (
             <div className="chat chat-start my-2">
-              <p className="chat-bubble  text-bodyBg text-lg leading-[26px] backdrop-blur-[100px] font-semibold bg-amber-900">{renderAiResponse[i]}</p>
+              <p className="chat-bubble text-bodyBg text-lg leading-[26px] 
+                backdrop-blur-[100px] font-semibold bg-amber-900"
+              >
+                {renderAiResponse[i]}
+              </p>
             </div>
           )}
         </div>
@@ -39,23 +44,52 @@ export default function Main({
     </div>
   )
 
+  const mainStyle = `bg-transparent pt-[65px] pb-[90px] transition-all 
+    h-screen overflow-scroll relative z-[0] px-2 `
+  ;
+
+  const langTranTheme = `bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] 
+    from-yellow-300 via-red-600 to-fuchsia-700`
+  ;
+
+  const aIImgGenTheme = `bg-[conic-gradient(at_right,_var(--tw-gradient-stops))] 
+    from-sky-400 to-indigo-900`
+  ;
+
+  const introStyle = `text-center font-bold text-sm rounded-[8px] 
+    text-[#1e1c28] w-48 tracking-[0.011rem] backdrop-blur-[100px]
+    bg-white/50 py-2 my-7  p-3 m-auto`
+  ;
+
   return (
     // Main chat section with dynamic styles and content
     <main 
       ref={containerRef} 
-      className={`bg-transparent pt-[65px] pb-[90px] transition-all
-      px-2 bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-yellow-300 via-red-600 to-fuchsia-700 h-screen overflow-scroll relative z-[0]`}
+      className={`${toggleImgGen ? langTranTheme : aIImgGenTheme}`}
     >
-      {/* Heading for language selection */}
-      <h1 className={`text-center font-[900] text-sm rounded-[8px] 
-        text-[#1e1c28] w-48 tracking-[0.011rem] backdrop-blur-[100px]
-        bg-white/50 py-2 my-7  p-3 m-auto `
-      }>
-        Select the language you 
-        me to translate into.
-      </h1>
-      <div className='transition-all'>{userTextAiResponse()}</div>
-      {loading && renderLoading()}
+      {toggleImgGen ? 
+        (<section className={`${mainStyle} ${aIImgGenTheme} 
+          ${toggleImgGen && 'animate-slideRight'} `}
+        >
+          <div className='w-full border-[8px] rounded-lg h-[350px] mt-14
+            border-y-purple-600 border-x-purple-950 bg-black/15'
+          >
+            <h1 className={`text-center font-bold text-2xl mt-32 text-white px-3`}>
+              Describe the image you want generate and click send.
+            </h1>
+          </div>
+        </section>) :
+        (<section className={`${mainStyle} ${langTranTheme} 
+          ${!toggleImgGen && 'animate-slideLeft'}`}>
+          {/* Heading for language selection */}
+          <h1 className={introStyle}>
+            Select the language you 
+            me to translate into.
+          </h1>
+          <div className='transition-all'>{userTextAiResponse()}</div>
+          {loading && renderLoading()}
+        </section>)
+      }
     </main>
   )
 }

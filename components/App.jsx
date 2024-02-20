@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext, useRef } from 'react'
 import { OpenAI } from 'openai'
 import Header from './Header'
-import headerBg from './img/usa-icon.png'
+import usFlag from './img/usa-icon.png'
 import dropDownIcon from './img/dropdown.png'
 import sendBtnIcon from './img/send-icon.png'
 import Main from './Main'
@@ -9,6 +9,7 @@ import spanishFlag from './img/spain.png'
 import Footer from './Footer'
 import { ToggleContext } from './UseContext'
 import {fetchApiKey, fetchApiNewKey} from '../firebase'
+import StartPage from './StartPage'
 
 export default function App() {
   // State variables using useState hook
@@ -20,6 +21,7 @@ export default function App() {
   const [renderAiResponse, setRenderAiResponse] = useState(saveUserAiChatToLocalStorage)
   const [userChat, setUserChat] = useState(saveUserChatToLocalStorage)
   const [loading, setLoading] = useState(false)
+  const [toggleImgGen, setToggleImgGen] = useState(false)
  
 
   // Refs for DOM elements
@@ -50,6 +52,10 @@ export default function App() {
     localStorage.setItem("userChat", JSON.stringify(userChat))
     localStorage.setItem("renderAiResponse", JSON.stringify(renderAiResponse))
   }, [userChat, renderAiResponse])
+
+  function handleToggleImg() {
+    setToggleImgGen(prevImgToggle => !prevImgToggle)
+  }
 
   // Event handler for input change
   function handleChange(e) {
@@ -121,7 +127,7 @@ export default function App() {
       const response = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
         messages: messages,
-        temperature: 1.1,
+        temperature: 0.7,
         presence_penalty: 0,
         frequency_penalty: 0,
         max_tokens: 54,
@@ -152,21 +158,15 @@ export default function App() {
       flex flex-col overflow-hidden `
     }>
      {welcomeEl ? 
-        (<section className={`py-28 bg-[conic-gradient(at_top,_var(--tw-gradient-stops))]
-           from-gray-900 to-gray-600 text-white flex flex-col justify-center  
-          h-screen items-center ${!welcomeEl && "animate-fade transition-all"}
-          overflow-hidden w-full text-center`}>
-          <div className='tracking-wide'>
-            <h1 className='text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-red-500 to-fuchsia-700'>Lugbayin</h1>
-            <p className='text-2xl pt-3 font-medium text-slate-100'>AI language Translator</p>
-          </div>
-          <button onClick={handleWelcome} className='mt-auto text-2xl font-semibold tracking-widest
-              bg-black/35 backdrop-blur-[100px] py-2 px-10 rounded-badge'>Start</button>
-        </section>) :
+        (<StartPage 
+          welcomeEl={welcomeEl}
+          handleWelcome={handleWelcome}
+        />) 
+        :
         (<section>
           {/* Header component */}
           <Header
-            headerBg={headerBg}
+            usFlag={usFlag}
             toggleTheme={toggleTheme}
             isToggled={isToggled}
             toggle={toggle}
@@ -177,6 +177,8 @@ export default function App() {
             navbarRef={navbarRef}
             dropDownIcon={dropDownIcon}
             currentLangImg={currentLangImg}
+            handleToggleImg={handleToggleImg}
+            toggleImgGen={toggleImgGen}
           />
           
           {/* Main component */}
@@ -186,6 +188,7 @@ export default function App() {
             loading={loading}
             theme={theme}
             containerRef={containerRef}
+            toggleImgGen={toggleImgGen}
           />
           
           {/* Footer component */}
@@ -198,6 +201,7 @@ export default function App() {
             handleBlur={handleBlur}
             handleFocus={handleFocus}
             textareaRef={textareaRef}
+            toggleImgGen={toggleImgGen}
           />
         </section>)
      }

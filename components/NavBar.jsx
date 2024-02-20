@@ -6,7 +6,6 @@ export default function NavBar({
   handleLanguage, // Function to handle language change
   isToggled, // Toggled state for navigation bar
   currentLanguage, // Current selected language
-  navbarRef // Reference to navigation bar
 }) {
 
   // Mapping through firebase data to render language options
@@ -52,7 +51,7 @@ export default function NavBar({
   
   // Rendering navigation bar with language options and clear chat button
   return (
-    <nav className={`absolute left-[0px] top-[71px] transition-all overflow-hidden
+    <nav className={`absolute left-[0px] top-[71px] transition-all
       overflow-x-hidden pb-4 backdrop-blur-[100px] bg-white/75 w-[191px] 
       ${isToggled ? 'h-[238px] ' : 'h-[0] opacity-0'} rounded-b-lg`}
     >

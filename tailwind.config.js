@@ -14,14 +14,32 @@ export default {
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
       },
-      animation: {
-        fade: "fadeIn .5s 1s ease-out forwards",
-      },
       keyframes: {
-        fadeIn: {
-          "0%": { opacity: 0 },
-          "100%": { opacity: 1 },
+        slideRight: {
+          "0%": {
+            transform: "scaleX(0)",
+            "transform-origin": "100% 100%",
+          },
+          "100%": {
+            transform: "scaleX(1)",
+            "transform-origin": "100% 100%",
+          },
         },
+        slideLeft: {
+          "0%": {
+            transform: "scaleX(0)",
+            "transform-origin": "0% 0%",
+          },
+          "100%": {
+            transform: "scaleX(1)",
+            "transform-origin": "0% 0%",
+          },
+        },
+      },
+      animation: {
+        slideRight: "slideRight .3s ease 0s 1 normal forwards",
+        slideLeft: "slideLeft .3s ease 0s 1 normal forwards",
+        fade: "fadeIn .5s 1s ease-out forwards",
       },
     },
   },
