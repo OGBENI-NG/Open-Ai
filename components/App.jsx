@@ -4,6 +4,7 @@ import Header from './Header'
 import usFlag from './img/usa-icon.png'
 import dropDownIcon from './img/dropdown.png'
 import sendBtnIcon from './img/send-icon.png'
+import sendBtnImg from './img/send-icon-img.png'
 import Main from './Main'
 import spanishFlag from './img/spain.png'
 import Footer from './Footer'
@@ -241,6 +242,7 @@ export default function App() {
             aiImgInput={aiImgInput}
             setInputValue={setInputValue}
             sendBtnIcon={sendBtnIcon}
+            sendBtnImg={sendBtnImg}
             handleChange={handleChange}
             handleSendText={handleSendText}
             handleBlur={handleBlur}

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from 'react'
 
 export default function Footer({
   handleChange, // Function to handle input change
@@ -9,31 +9,32 @@ export default function Footer({
   handleRenderAiImg, // function to render ai image
   toggleImgGen, // variable to switch between ai language translator and ai img generator
   aiImgInput, // value of the input of ai img generator aka prompt
-  handleAiImgGenChange // function to handle ai img generator input change
+  handleAiImgGenChange, // function to handle ai img generator input change
+  sendBtnImg
 }) {
 
   // Effect to handle keypress events on the textarea
   useEffect(() => {
     function handleKeyPress(e) {
       // Adjust border radius based on conditions
-      if (e.key === 'Enter' || inputValue.length > 28) {
-        textareaRef.current.style.borderRadius = '16px';
-      } else if (inputValue === "") {
-        textareaRef.current.style.borderRadius = '100px';
-        textareaRef.current.style.height = '40px'; // Reset height to 40px when value is empty
+      if (e.key === 'Enter' || inputValue.length > 28 || aiImgInput.length > 28 ) {
+        textareaRef.current.style.borderRadius = '16px'
+      } else if (inputValue === "" || aiImgInput === "") {
+        textareaRef.current.style.borderRadius = '100px'
+        textareaRef.current.style.height = '40px' // Reset height to 40px when value is empty
       } else {
-        textareaRef.current.style.borderRadius = '100px';
+        textareaRef.current.style.borderRadius = '100px'
       }
     }
 
     // Add event listener for keydown
-    textareaRef.current.addEventListener('keydown', handleKeyPress);
+    textareaRef.current.addEventListener('keydown', handleKeyPress)
 
     // Cleanup function to remove event listener
     return () => {
-      textareaRef.current.removeEventListener('keydown', handleKeyPress);
-    };
-  }, [inputValue]);
+      textareaRef.current.removeEventListener('keydown', handleKeyPress)
+    }
+  }, [inputValue, aiImgInput])
 
   const textareaData = {
     minHeight: '40px', 
@@ -43,8 +44,9 @@ export default function Footer({
   }
 
   const textareaStyle = `bg-txtAreaBg w-full border-[1.5px] transition-all
-  border-orange-700 text-userTxt font-medium leading-[110%]
-rounded-[100px] outline-none resize-none`
+    border-orange-700 text-userTxt font-medium leading-[110%]
+    rounded-[100px] outline-none resize-none`
+  ;
 
   // Render the footer component with dynamic styles and content
   return (
@@ -52,7 +54,7 @@ rounded-[100px] outline-none resize-none`
       backdrop-blur-[100px] bg-white/75 px-3 pt-4 pb-8
       `
     }>
-      <div >
+      <div>
         {/* Textarea for input */}
         {!toggleImgGen ? (
           <div className='flex items-center gap-2'>
@@ -77,7 +79,7 @@ rounded-[100px] outline-none resize-none`
         ) : (
           <div className='flex items-center gap-2'>
             <textarea
-              className={`${textareaStyle}`} 
+              className={`${textareaStyle} border-blue-500`} 
               type="text" 
               onChange={handleAiImgGenChange}  
               value={aiImgInput}
@@ -90,12 +92,12 @@ rounded-[100px] outline-none resize-none`
             <img 
               onClick={handleRenderAiImg}
               className='w-[40px] h-[40px]'
-              src={sendBtnIcon}
+              src={sendBtnImg}
               alt="send-btn-icon" 
             />
           </div>
         )}
       </div>
     </footer>
-  );
+  )
 }
