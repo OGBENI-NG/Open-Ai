@@ -66,7 +66,7 @@ export default function Header({
         <button
           onClick={handleToggleImg} 
           className={`ml-auto text-[20px] 
-            ${!toggleImgGen ? 'bg-white/35 text-black' : 'bg-blue-700 text-white'} 
+            ${!toggleImgGen ? 'bg-white/35 text-black' : 'bg-blue-800 text-white'} 
               font-extrabold transition-all
             px-3 py-5 rounded-lg leading-[0] tracking-wide
           `}

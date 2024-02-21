@@ -15,13 +15,17 @@ export default function App() {
   // State variables using useState hook
   const [firebaseData, setFirebaseData] = useState([])
   const [inputValue, setInputValue] = useState('')
+  const [aiImgInput, setAiImgInput] = useState('')
   const [currentLanguage, setCurrentLanguage] = useState("Spanish")
   const [currentLangImg, setCurrentLangImg] = useState(spanishFlag)
   const [renderApiKey, setRenderApiKey] = useState('')
   const [renderAiResponse, setRenderAiResponse] = useState(saveUserAiChatToLocalStorage)
   const [userChat, setUserChat] = useState(saveUserChatToLocalStorage)
   const [loading, setLoading] = useState(false)
+  const [aiImgLoading, setAiImgLoading] = useState(false)
+  const [aiImgPlaceholder, setAiImgPlaceholder] = useState(true)
   const [toggleImgGen, setToggleImgGen] = useState(false)
+  const [renderAiImg, setRenderAiImg] = useState('')
  
 
   // Refs for DOM elements
@@ -64,6 +68,14 @@ export default function App() {
     const capitalizedInputValue = inputValue.charAt(0).toUpperCase() + inputValue.slice(1)
     setInputValue(capitalizedInputValue)
   }
+
+  //Event handler for ai img input
+  function handleAiImgGenChange(e) {
+    const inputValue = e.target.value
+    e.target.style.height = `${e.target.scrollHeight}px`
+    const capitalizedInputValue = inputValue.charAt(0).toUpperCase() + inputValue.slice(1)
+    setAiImgInput(capitalizedInputValue)
+  }
   
   // Function to handle language change
   function handleLanguage(lang, currentImg) {
@@ -93,7 +105,7 @@ export default function App() {
   }, [userChat, renderAiResponse])
 
   // Create OpenAI client instance
-  const openai = new OpenAI({
+  const openAi = new OpenAI({
     apiKey: renderApiKey,
     dangerouslyAllowBrowser: true
   })
@@ -124,7 +136,7 @@ export default function App() {
   async function fetchData() {
     try {
       setLoading(true) // Set loading state to true
-      const response = await openai.chat.completions.create({
+      const response = await openAi.chat.completions.create({
         model: 'gpt-3.5-turbo',
         messages: messages,
         temperature: 0.7,
@@ -140,7 +152,6 @@ export default function App() {
       setLoading(false) // Set loading state to false after response
     }
   }
-
   // Function to handle sending text message
   function handleSendText() {
     if(inputValue.trim("")) {
@@ -152,11 +163,41 @@ export default function App() {
     }
   }
 
+  //functions to generate image from open ai
+  async function generateAiImg() {
+    try {
+      setAiImgLoading(true)
+      setAiImgPlaceholder(false)
+      const response = await openAi.images.generate({
+        model: 'dall-e-2',
+        prompt: aiImgInput,
+        n: 1,
+        //style: 'natural',
+        size: '256x256',
+        response_format: 'b64_json'
+      })
+
+      setRenderAiImg(`data:image/png;base64,${response.data[0].b64_json}`)
+    } catch (error) {
+      console.error('Error:', error)
+    } finally {
+      setAiImgLoading(false) //Set loading state to false after response
+    }
+  }
+
+  //function to display ai image
+  function handleRenderAiImg() {
+    if(aiImgInput.trim("")) {
+      generateAiImg()
+      textareaRef.current.style.height = '40px'
+      textareaRef.current.style.borderRadius = '100px'
+      setAiImgInput('')
+    }
+  }
+  
   // JSX rendering of the component
   return (
-    <main className={`font-roboto scroll-smooth 
-      flex flex-col overflow-hidden `
-    }>
+    <main className={`font-roboto scroll-smooth flex flex-col overflow-hidden `}>
      {welcomeEl ? 
         (<StartPage 
           welcomeEl={welcomeEl}
@@ -189,11 +230,15 @@ export default function App() {
             theme={theme}
             containerRef={containerRef}
             toggleImgGen={toggleImgGen}
+            renderAiImg={renderAiImg}
+            aiImgPlaceholder={aiImgPlaceholder}
+            aiImgLoading={aiImgLoading}
           />
           
           {/* Footer component */}
           <Footer
             inputValue={inputValue}
+            aiImgInput={aiImgInput}
             setInputValue={setInputValue}
             sendBtnIcon={sendBtnIcon}
             handleChange={handleChange}
@@ -202,6 +247,8 @@ export default function App() {
             handleFocus={handleFocus}
             textareaRef={textareaRef}
             toggleImgGen={toggleImgGen}
+            handleRenderAiImg={handleRenderAiImg}
+            handleAiImgGenChange={handleAiImgGenChange}
           />
         </section>)
      }

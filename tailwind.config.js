@@ -10,6 +10,8 @@ export default {
         txtAreaBg: "#F5F5F5",
         userTxt: "#333333",
         boxShadow: "rgb(248 113 113/ 0.5)",
+        frameColor: "rgb(218, 165, 32)",
+        frameColor2: "rgb(255, 215, 0)"
       },
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],

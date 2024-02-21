@@ -6,7 +6,10 @@ export default function Main({
   userChat, // Array of user messages
   loading, // Loading state
   containerRef, // Reference to main chat container
-  toggleImgGen
+  toggleImgGen,
+  renderAiImg,
+  aiImgPlaceholder,
+  aiImgLoading
 }) {
 
   //function to render userText and aiResponse
@@ -67,19 +70,32 @@ export default function Main({
       ref={containerRef} 
       className={`${toggleImgGen ? langTranTheme : aIImgGenTheme}`}
     >
-      {toggleImgGen ? 
-        (<section className={`${mainStyle} ${aIImgGenTheme} 
+      {toggleImgGen ? (
+        <section className={`${mainStyle} ${aIImgGenTheme} 
           ${toggleImgGen && 'animate-slideRight'} `}
         >
-          <div className='w-full border-[8px] rounded-lg h-[350px] mt-14
-            border-y-purple-600 border-x-purple-950 bg-black/15'
-          >
-            <h1 className={`text-center font-bold text-2xl mt-32 text-white px-3`}>
-              Describe the image you want generate and click send.
-            </h1>
+          <div className=''>
+            {aiImgPlaceholder ? ( 
+              <h1 className={`text-center font-bold text-2xl mt-48 text-white px-3`}>
+                Describe the image you want generate and click send.
+              </h1>
+            ) : (
+              <div className='h-[350px] relative border-[8px] border-y-frameColor2 border-x-frameColor bg-black/15 mt-28'>
+                {aiImgLoading ? (
+                  <span className="absolute text-frameColor w-[70px] 
+                    inset-0 m-auto loading loading-ring"></span>
+                ):(
+                  <img 
+                    className='w-full h-full object-cover' 
+                    src={renderAiImg} 
+                  />
+                )}
+              </div>
+            )}
           </div>
-        </section>) :
-        (<section className={`${mainStyle} ${langTranTheme} 
+        </section>
+        ) : (
+        <section className={`${mainStyle} ${langTranTheme} 
           ${!toggleImgGen && 'animate-slideLeft'}`}>
           {/* Heading for language selection */}
           <h1 className={introStyle}>
@@ -88,8 +104,8 @@ export default function Main({
           </h1>
           <div className='transition-all'>{userTextAiResponse()}</div>
           {loading && renderLoading()}
-        </section>)
-      }
+        </section>
+      )}
     </main>
   )
 }

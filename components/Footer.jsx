@@ -5,7 +5,11 @@ export default function Footer({
   inputValue, // Value of the input textarea
   handleSendText, // Function to handle sending text
   sendBtnIcon, // Icon for the send button
-  textareaRef // Reference to the textarea element
+  textareaRef, // Reference to the textarea element
+  handleRenderAiImg, // function to render ai image
+  toggleImgGen, // variable to switch between ai language translator and ai img generator
+  aiImgInput, // value of the input of ai img generator aka prompt
+  handleAiImgGenChange // function to handle ai img generator input change
 }) {
 
   // Effect to handle keypress events on the textarea
@@ -38,33 +42,59 @@ export default function Footer({
     fontSize: '22px'
   }
 
+  const textareaStyle = `bg-txtAreaBg w-full border-[1.5px] transition-all
+  border-orange-700 text-userTxt font-medium leading-[110%]
+rounded-[100px] outline-none resize-none`
+
   // Render the footer component with dynamic styles and content
   return (
     <footer className={`fixed z-[999] w-full bottom-0 left-0 
       backdrop-blur-[100px] bg-white/75 px-3 pt-4 pb-8
       `
     }>
-      <div className='flex items-center gap-2'>
+      <div >
         {/* Textarea for input */}
-        <textarea
-          className='bg-txtAreaBg w-full border-[1.5px] transition-all
-            border-orange-700 text-userTxt font-medium leading-[110%]
-          rounded-[100px] outline-none resize-none' 
-          type="text" 
-          onChange={handleChange}  
-          value={inputValue}
-          style={textareaData}
-          name='textInput'
-          id='textInput'
-          ref={textareaRef}
-        />
-        {/* Send button */}
-        <img 
-          onClick={handleSendText}
-          className='w-[40px] h-[40px]'
-          src={sendBtnIcon}
-          alt="send-btn-icon" 
-        />
+        {!toggleImgGen ? (
+          <div className='flex items-center gap-2'>
+            <textarea
+              className={textareaStyle}
+              type="text" 
+              onChange={handleChange}  
+              value={inputValue}
+              style={textareaData}
+              name='textInput'
+              id='textInput'
+              ref={textareaRef}
+            />
+            {/* Send button */}
+            <img 
+              onClick={handleSendText}
+              className='w-[40px] h-[40px]'
+              src={sendBtnIcon}
+              alt="send-btn-icon" 
+            />
+          </div>
+        ) : (
+          <div className='flex items-center gap-2'>
+            <textarea
+              className={`${textareaStyle}`} 
+              type="text" 
+              onChange={handleAiImgGenChange}  
+              value={aiImgInput}
+              style={textareaData}
+              name='textInput'
+              id='textInput'
+              ref={textareaRef}
+            />
+            {/* Send button */}
+            <img 
+              onClick={handleRenderAiImg}
+              className='w-[40px] h-[40px]'
+              src={sendBtnIcon}
+              alt="send-btn-icon" 
+            />
+          </div>
+        )}
       </div>
     </footer>
   );
