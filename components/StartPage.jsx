@@ -19,13 +19,13 @@ export default function StartPage({welcomeEl, handleWelcome, aiBotIcon, welcomeL
           <p className='text-2xl pt-2 font-medium text-slate-100'>AI language Translator</p>
         </div>
         <div className='mt-4 text-green-300'>
-          <h2 className='text-4xl'>And</h2>
+          <h2 className='text-3xl'>And</h2>
           <p className='pt-2 text-xl'>AI Image Generator</p>
         </div>
         <img 
           src={aiBotIcon} 
           alt="bot-icon" 
-          className='mt-12'
+          className='mt-16'
         />
         <button 
           onClick={handleWelcome}

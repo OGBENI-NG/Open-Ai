@@ -38,7 +38,7 @@ export default function App() {
   const {
     isToggled, toggle, theme, welcomeLoadingEl,
     toggleTheme, navbarRef, setIsToggled,
-    handleBlur, handleFocus, welcomeEl, handleWelcome
+    handleBlur, handleFocus, welcomeEl, handleWelcome,
   } = useContext(ToggleContext)
 
   // Function to retrieve user chat from localStorage
@@ -59,8 +59,12 @@ export default function App() {
     localStorage.setItem("renderAiResponse", JSON.stringify(renderAiResponse))
   }, [userChat, renderAiResponse])
 
+  //function ton switch ai language translator and ai image generator
   function handleToggleImg() {
     setToggleImgGen(prevImgToggle => !prevImgToggle)
+    if(!toggleImgGen) {
+      setIsToggled(false)
+    }
   }
 
   // Event handler for input change
@@ -154,7 +158,8 @@ export default function App() {
       setLoading(false) // Set loading state to false after response
     }
   }
-  // Function to handle sending text message
+
+  // Function to handle sending ai text to translate
   function handleSendText() {
     if(inputValue.trim("")) {
       setUserChat(prevUserChat => [...prevUserChat, inputValue]) 
@@ -165,7 +170,7 @@ export default function App() {
     }
   }
 
-  //functions to generate image from open ai
+  //functions to fetch ai image generator data
   async function generateAiImg() {
     try {
       setAiImgLoading(true)
@@ -200,15 +205,13 @@ export default function App() {
   // JSX rendering of the component
   return (
     <main className={`font-roboto scroll-smooth flex flex-col overflow-hidden `}>
-     {welcomeEl ? (
-        <div>
-          <StartPage 
-            welcomeEl={welcomeEl}
-            handleWelcome={handleWelcome}
-            aiBotIcon={aiBotIcon}
-            welcomeLoadingEl={welcomeLoadingEl}
-          />
-        </div>
+      {welcomeEl ? (
+        <StartPage 
+          welcomeEl={welcomeEl}
+          handleWelcome={handleWelcome}
+          aiBotIcon={aiBotIcon}
+          welcomeLoadingEl={welcomeLoadingEl}
+        />
       ):(
         <section>
           {/* Header component */}

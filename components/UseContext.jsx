@@ -52,7 +52,8 @@ export default function UseContext({ children }) {
       isKeyboardOpen, // State for detecting if the keyboard is open (not used in this component)
       handleWelcome,
       welcomeEl,
-      welcomeLoadingEl
+      welcomeLoadingEl,
+      setIsToggled
     }}>
       {children} {/* Render children components */}
     </ToggleContext.Provider>

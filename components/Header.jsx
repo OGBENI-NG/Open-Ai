@@ -71,7 +71,7 @@ export default function Header({
             px-3 py-5 rounded-lg leading-[0] tracking-wide
           `}
         >
-         {!toggleImgGen ? 'Ai Img' : 'Ai trans' }
+         {!toggleImgGen ? 'Ai Image' : 'Ai trans' }
         </button>
       </section>
     </header>
