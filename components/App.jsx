@@ -5,6 +5,7 @@ import usFlag from './img/usa-icon.png'
 import dropDownIcon from './img/dropdown.png'
 import sendBtnIcon from './img/send-icon.png'
 import sendBtnImg from './img/send-icon-img.png'
+import aiBotIcon from './img/bot-icon.png'
 import Main from './Main'
 import spanishFlag from './img/spain.png'
 import Footer from './Footer'
@@ -35,7 +36,7 @@ export default function App() {
 
   // Context variables
   const {
-    isToggled, toggle, theme,
+    isToggled, toggle, theme, welcomeLoadingEl,
     toggleTheme, navbarRef, setIsToggled,
     handleBlur, handleFocus, welcomeEl, handleWelcome
   } = useContext(ToggleContext)
@@ -199,13 +200,17 @@ export default function App() {
   // JSX rendering of the component
   return (
     <main className={`font-roboto scroll-smooth flex flex-col overflow-hidden `}>
-     {welcomeEl ? 
-        (<StartPage 
-          welcomeEl={welcomeEl}
-          handleWelcome={handleWelcome}
-        />) 
-        :
-        (<section>
+     {welcomeEl ? (
+        <div>
+          <StartPage 
+            welcomeEl={welcomeEl}
+            handleWelcome={handleWelcome}
+            aiBotIcon={aiBotIcon}
+            welcomeLoadingEl={welcomeLoadingEl}
+          />
+        </div>
+      ):(
+        <section>
           {/* Header component */}
           <Header
             usFlag={usFlag}
@@ -252,8 +257,8 @@ export default function App() {
             handleRenderAiImg={handleRenderAiImg}
             handleAiImgGenChange={handleAiImgGenChange}
           />
-        </section>)
-     }
+        </section>
+      )}
     </main>
   )
 }

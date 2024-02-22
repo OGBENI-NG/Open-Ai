@@ -44,7 +44,7 @@ export default function Footer({
   }
 
   const textareaStyle = `bg-txtAreaBg w-full border-[1.5px] transition-all
-    border-orange-700 text-userTxt font-medium leading-[110%]
+    text-userTxt font-medium leading-[110%]
     rounded-[100px] outline-none resize-none`
   ;
 
@@ -59,7 +59,7 @@ export default function Footer({
         {!toggleImgGen ? (
           <div className='flex items-center gap-2'>
             <textarea
-              className={textareaStyle}
+              className={`${textareaStyle}  border-orange-700`}
               type="text" 
               onChange={handleChange}  
               value={inputValue}

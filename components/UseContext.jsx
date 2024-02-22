@@ -11,7 +11,7 @@ export default function UseContext({ children }) {
   // Reference to the navigation bar element
   const navbarRef = useRef(null)
   const [welcomeEl, setWelcomeEl] = useState(true)
-
+  const [welcomeLoadingEl, setWelcomeLoadingEl] = useState(false)
   // Function to toggle the navigation menu
   const toggle = () => {
     setIsToggled(prevState => !prevState)
@@ -35,7 +35,11 @@ export default function UseContext({ children }) {
   }, []) // Run this effect only once when the component mounts
 
   function handleWelcome() {
-    setWelcomeEl(false)
+    setWelcomeLoadingEl(true)
+    setTimeout(() => {
+      setWelcomeEl(false)
+      setWelcomeLoadingEl(false)
+    }, 2000)
   }
 
   // Provide the context values to its children components
@@ -47,7 +51,8 @@ export default function UseContext({ children }) {
       setIsToggled, // Function to set the toggled state
       isKeyboardOpen, // State for detecting if the keyboard is open (not used in this component)
       handleWelcome,
-      welcomeEl
+      welcomeEl,
+      welcomeLoadingEl
     }}>
       {children} {/* Render children components */}
     </ToggleContext.Provider>
