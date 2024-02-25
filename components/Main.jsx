@@ -75,12 +75,17 @@ export default function Main({
           ${toggleImgGen && 'animate-slideRight'} `}
         >
           <div className=''>
+            {/*  */}
             {aiImgPlaceholder ? ( 
               <h1 className={`text-center font-bold text-2xl mt-48 text-white px-3`}>
                 Describe the image you want generate and click send.
               </h1>
             ) : (
-              <div className='h-[350px] relative border-[8px] border-y-frameColor2 border-x-frameColor bg-black/15 mt-28'>
+              <div className={`h-[400px] relative border-[8px] 
+                ${aiImgLoading ? "border-none" : "bg-black/15 border-y-frameColor2 border-x-frameColor"}
+                mt-14`}
+              >
+                {/* loading state and generated image */}
                 {aiImgLoading ? (
                   <span className="absolute text-frameColor w-[70px] 
                     inset-0 m-auto loading loading-ring"></span>

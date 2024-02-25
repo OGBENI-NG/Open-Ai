@@ -29,9 +29,9 @@ export default function Header({
         
         {toggleImgGen ? 
           (
-            <h1 className='text-2xl font-bold text-transparent 
+            <h1 className='text-xl font-bold text-transparent 
                 bg-clip-text bg-gradient-to-r from-sky-500 via-red-900 to-fuchsia-700'>
-              AI Img Generator
+              AI Image Generator
             </h1>
           ) 
           : 
