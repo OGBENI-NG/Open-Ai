@@ -4,14 +4,18 @@ import React, { createContext, useState, useEffect, useRef } from 'react'
 const ToggleContext = createContext()
 
 export default function UseContext({ children }) {
-  // State for toggling navigation menu
+  // State for toggling navigation language menu
   const [isToggled, setIsToggled] = useState(false)
+
   // State for detecting if the keyboard is open (not used in this component)
   const [isKeyboardOpen, setIsKeyboardOpen] = useState(false)
+
   // Reference to the navigation bar element
   const navbarRef = useRef(null)
+
   const [welcomeEl, setWelcomeEl] = useState(true)
   const [welcomeLoadingEl, setWelcomeLoadingEl] = useState(false)
+  
   // Function to toggle the navigation menu
   const toggle = () => {
     setIsToggled(prevState => !prevState)

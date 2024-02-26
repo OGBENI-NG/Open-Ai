@@ -14,8 +14,8 @@ export default function Header({
   dropDownIcon, // Dropdown icon
   isToggled, // Toggled state for navigation menu
   handleToggleImg, // toggleImg to navigate to ai img generator
-  toggleImgGen
-}) {
+  toggleImgGen// toggleImgGen to switch to ai img generator and ai language translator
+  }) {
     
   return (
     // Header section with dynamic styles and content
@@ -26,34 +26,33 @@ export default function Header({
       `}
     >
       <section className='flex items-center'>
-        
-        {toggleImgGen ? 
-          (
-            <h1 className='text-xl font-bold text-transparent 
-                bg-clip-text bg-gradient-to-r from-sky-500 via-red-900 to-fuchsia-700'>
-              AI Image Generator
-            </h1>
-          ) 
-          : 
-          (<div className={`flex items-center gap-3 `}>
-              <img className='w-[40px] h-[40px]' src={englishFlag} alt="englishFlag-img" />
-              <p className='font-semibold text-xl text-userTxt'>To</p>
-              <div 
-                onClick={toggle} 
-                className='flex items-center gap-3 bg-white/35 px-2 rounded-lg '>
-                <img 
-                  src={currentLangImg} 
-                  alt="current-language-img" 
-                  className='w-[40px] h-[40px] transition-all' 
-                />
-                <img 
-                  className={`w-[25px] h-[25px] transition-all ${isToggled ? '-rotate-180':''}`} 
-                  src={dropDownIcon} 
-                  alt="dropdown-icon" 
-                />
+        {toggleImgGen ? (
+          <h1 className='text-xl font-bold text-transparent 
+            bg-clip-text bg-gradient-to-r from-sky-500
+            via-red-900 to-fuchsia-700'
+          >
+            AI Image Generator
+          </h1>
+        ):(
+          <div className={`flex items-center gap-3 `}>
+            <img className='w-[40px] h-[40px]' src={englishFlag} alt="englishFlag-img" />
+            <p className='font-semibold text-xl text-userTxt'>To</p>
+            <div 
+              onClick={toggle} 
+              className='flex items-center gap-3 bg-white/35 px-2 rounded-lg '>
+              <img 
+                src={currentLangImg} 
+                alt="current-language-img" 
+                className='w-[40px] h-[40px] transition-all' 
+              />
+              <img 
+                className={`w-[25px] h-[25px] transition-all ${isToggled ? '-rotate-180':''}`} 
+                src={dropDownIcon} 
+                alt="dropdown-icon" 
+              />
             </div>
-          </div>)
-        }
+          </div>
+        )}
         {/* Render NavBar component with necessary props */}
         <NavBar 
           firebaseData={firebaseData}

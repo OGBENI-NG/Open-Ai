@@ -1,10 +1,8 @@
 import React from 'react'
-
 // Function to render the textarea and send button
 export default function RenderInput({ 
     handleChange, inputValue,
-   handleSend, textareaRef,
-   inputType, sendBtnIcon,
+   handleSend, textareaRef, sendBtnIcon,
    placeholder, toggleImgGen
   }) {
 
