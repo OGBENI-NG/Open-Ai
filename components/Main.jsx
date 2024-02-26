@@ -9,21 +9,22 @@ export default function Main({
   toggleImgGen,
   renderAiImg,
   aiImgPlaceholder,
-  aiImgLoading
+  aiImgLoading,
+  errorMessage
 }) {
 
   //function to render userText and aiResponse
   const userTextAiResponse = () => (
     userChat.map((txt, i) => (
-      <section key={i} className=''>
-        <div className="chat chat-end">
+      <section key={i}>
+        <div className="chat chat-end transition-all">
           {/* User message */}
           <p className="chat-bubble text-lg font-semibold text-[#000] leading-[26px]  backdrop-blur-[50px] bg-white/75">{txt}</p>
         </div>
         <div>
           {/* AI response */}
           {renderAiResponse[i] && (
-            <div className="chat chat-start my-2">
+            <div className="chat chat-start my-2 transition-all">
               <p className="chat-bubble text-bodyBg text-lg leading-[26px] 
                 backdrop-blur-[100px] font-semibold bg-amber-900"
               >
@@ -36,18 +37,7 @@ export default function Main({
     ))
   )
 
-  // Function to render loading indicator
-  const renderLoading = () => (
-    <div className='flex my-6 ml-5 space-x-1 justify-start items-center 
-      bg-transparent dark:invert'
-    >
-      <div className='h-4 w-4 bg-black rounded-full animate-bounce [animation-delay:-0.3s]'></div>
-      <div className='h-4 w-4 bg-black rounded-full animate-bounce [animation-delay:-0.15s]'></div>
-      <div className='h-4 w-4 bg-black rounded-full animate-bounce'></div>
-    </div>
-  )
-
-  const mainStyle = `bg-transparent pt-[65px] pb-[90px] transition-all 
+  const mainStyle = `bg-transparent pt-[65px] pb-[90px]  
     h-screen overflow-scroll relative z-[0] px-2 `
   ;
 
@@ -66,16 +56,14 @@ export default function Main({
 
   return (
     // Main chat section with dynamic styles and content
-    <main 
-      ref={containerRef} 
-      className={`${toggleImgGen ? langTranTheme : aIImgGenTheme}`}
+    <main className={`${toggleImgGen ? langTranTheme : aIImgGenTheme}`}
     >
       {toggleImgGen ? (
-        <section className={`${mainStyle} ${aIImgGenTheme} 
+        <section 
+          className={`${mainStyle} ${aIImgGenTheme} 
           ${toggleImgGen && 'animate-slideRight'} `}
         >
           <div className=''>
-            {/*  */}
             {aiImgPlaceholder ? ( 
               <h1 className={`text-center font-bold text-2xl mt-48 text-white px-3`}>
                 Describe the image you want generate and click send.
@@ -100,15 +88,18 @@ export default function Main({
           </div>
         </section>
         ) : (
-        <section className={`${mainStyle} ${langTranTheme} 
-          ${!toggleImgGen && 'animate-slideLeft'}`}>
+        <section  
+          ref={containerRef} 
+          className={`${mainStyle} ${langTranTheme} 
+          ${!toggleImgGen && 'animate-slideLeft'}`}
+        >
           {/* Heading for language selection */}
           <h1 className={introStyle}>
             Select the language you 
             me to translate into.
           </h1>
-          <div className='transition-all'>{userTextAiResponse()}</div>
-          {loading && renderLoading()}
+          <div>{userTextAiResponse()}</div>
+          {loading && <span className="loading text-white loading-dots w-[3.5rem]"></span>}
         </section>
       )}
     </main>

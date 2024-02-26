@@ -19,7 +19,7 @@ export default function Footer({
   useEffect(() => {
     function handleKeyPress(e) {
       // Adjust border radius based on conditions
-      if (e.key === 'Enter' || inputValue.length > 28 || aiImgInput.length > 28 ) {
+      if (e.key === 'Enter' || inputValue.length > 25 || aiImgInput.length > 25 ) {
         textareaRef.current.style.borderRadius = '16px'
       } else if (inputValue === "" || aiImgInput === "") {
         textareaRef.current.style.borderRadius = '100px'

@@ -3,7 +3,7 @@ import NavBar from './NavBar'
 
 // Functional component for header section
 export default function Header({
-  usFlag, // us flag
+  englishFlag, // us flag
   navbarRef, // Reference to navigation bar
   currentLangImg, // Image representing current language
   firebaseData, // Firebase data for language options
@@ -36,7 +36,7 @@ export default function Header({
           ) 
           : 
           (<div className={`flex items-center gap-3 `}>
-              <img className='w-[40px] h-[40px]' src={usFlag} alt="usFlag-img" />
+              <img className='w-[40px] h-[40px]' src={englishFlag} alt="englishFlag-img" />
               <p className='font-semibold text-xl text-userTxt'>To</p>
               <div 
                 onClick={toggle} 
@@ -66,7 +66,7 @@ export default function Header({
         <button
           onClick={handleToggleImg} 
           className={`ml-auto text-[20px] 
-            ${!toggleImgGen ? 'bg-white/35 text-black' : 'bg-blue-800 text-white'} 
+            ${!toggleImgGen ? 'bg-white/80 text-blue-800' : 'bg-blue-800 text-white'} 
               font-extrabold transition-all
             px-3 py-5 rounded-lg leading-[0] tracking-wide
           `}

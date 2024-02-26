@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext, useRef } from 'react'
 import { OpenAI } from 'openai'
 import Header from './Header'
-import usFlag from './img/usa-icon.png'
+import englishFlag from './img/english-flag.png'
 import dropDownIcon from './img/dropdown.png'
 import sendBtnIcon from './img/send-icon.png'
 import sendBtnImg from './img/send-icon-img.png'
@@ -28,6 +28,7 @@ export default function App() {
   const [aiImgPlaceholder, setAiImgPlaceholder] = useState(true)
   const [toggleImgGen, setToggleImgGen] = useState(false)
   const [renderAiImg, setRenderAiImg] = useState('')
+
  
 
   // Refs for DOM elements
@@ -216,7 +217,7 @@ export default function App() {
         <section>
           {/* Header component */}
           <Header
-            usFlag={usFlag}
+            englishFlag={englishFlag}
             toggleTheme={toggleTheme}
             isToggled={isToggled}
             toggle={toggle}
