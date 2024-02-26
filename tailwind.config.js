@@ -41,7 +41,6 @@ export default {
       animation: {
         slideRight: "slideRight .3s ease 0s 1 normal forwards",
         slideLeft: "slideLeft .3s ease 0s 1 normal forwards",
-        fade: "fadeIn .5s 1s ease-out forwards",
       },
     },
   },

@@ -6,6 +6,7 @@ import dropDownIcon from './img/dropdown.png'
 import sendBtnIcon from './img/send-icon.png'
 import sendBtnImg from './img/send-icon-img.png'
 import aiBotIcon from './img/bot-icon.png'
+import copyIcon from './img/copy-icon.png'
 import Main from './Main'
 import spanishFlag from './img/spain.png'
 import Footer from './Footer'
@@ -28,6 +29,7 @@ export default function App() {
   const [aiImgPlaceholder, setAiImgPlaceholder] = useState(true)
   const [toggleImgGen, setToggleImgGen] = useState(false)
   const [renderAiImg, setRenderAiImg] = useState('')
+  const [copyNotification, setCopyNotification] = useState('')
 
  
 
@@ -202,6 +204,20 @@ export default function App() {
       setAiImgInput('')
     }
   }
+
+  //function to copy ai response
+  async function handleCopyToClipboard(text) {
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopyNotification('Copied')
+      setTimeout(() => {
+        setCopyNotification('')
+      }, 2000)
+    } catch (error) {
+      setCopyNotification('Failed to copy')
+      console.error('Error copying text: ', error)
+    }
+  }
   
   // JSX rendering of the component
   return (
@@ -243,6 +259,9 @@ export default function App() {
             renderAiImg={renderAiImg}
             aiImgPlaceholder={aiImgPlaceholder}
             aiImgLoading={aiImgLoading}
+            copyIcon={copyIcon}
+            handleCopyToClipboard={handleCopyToClipboard}
+            copyNotification={copyNotification}
           />
           
           {/* Footer component */}

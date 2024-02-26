@@ -10,8 +10,10 @@ export default function Main({
   renderAiImg,
   aiImgPlaceholder,
   aiImgLoading,
-  errorMessage
-}) {
+  copyIcon,
+  handleCopyToClipboard,
+  copyNotification
+  }) {
 
   //function to render userText and aiResponse
   const userTextAiResponse = () => (
@@ -25,11 +27,17 @@ export default function Main({
           {/* AI response */}
           {renderAiResponse[i] && (
             <div className="chat chat-start my-2 transition-all">
-              <p className="chat-bubble text-bodyBg text-lg leading-[26px] 
-                backdrop-blur-[100px] font-semibold bg-amber-900"
+              <div className="chat-bubble text-bodyBg text-lg leading-[26px] 
+                backdrop-blur-[100px] font-semibold bg-amber-900 flex 
+                items-center gap-3 pr-2"
               >
-                {renderAiResponse[i]}
-              </p>
+                <p>{renderAiResponse[i]}</p>
+                <img 
+                  className=" w-6 mr-auto mt-auto" 
+                  src={copyIcon} alt="copy-icon"
+                  onClick={() => handleCopyToClipboard(renderAiResponse[i])} 
+                />
+              </div>
             </div>
           )}
         </div>
@@ -38,7 +46,7 @@ export default function Main({
   )
 
   const mainStyle = `bg-transparent pt-[65px] pb-[90px]  
-    h-screen overflow-scroll relative z-[0] px-2 `
+    h-screen overflow-scroll relative z-[0] px-2 relative`
   ;
 
   const langTranTheme = `bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] 
@@ -54,10 +62,17 @@ export default function Main({
     bg-white/50 py-2 my-7  p-3 m-auto`
   ;
 
+  const copyStyles = `transition-all absolute right-0 top-[100px] 
+    left-0 text-center py-2 w-[120px] text-xl bg-white/25  z-[1] 
+    text-white font-semibold m-auto backdrop-blur-[100px] rounded-full`
+  ;
   return (
     // Main chat section with dynamic styles and content
     <main className={`${toggleImgGen ? langTranTheme : aIImgGenTheme}`}
     >
+      {copyNotification && <span className={`${copyStyles}`}>
+        {copyNotification}
+      </span>}
       {toggleImgGen ? (
         <section 
           className={`${mainStyle} ${aIImgGenTheme} 
