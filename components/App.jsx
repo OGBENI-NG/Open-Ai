@@ -221,7 +221,7 @@ export default function App() {
   
   // JSX rendering of the component
   return (
-    <main className={`font-roboto scroll-smooth flex flex-col overflow-hidden `}>
+    <main className={`font-roboto !scroll-smooth flex flex-col`}>
       {welcomeEl ? (
         <StartPage 
           welcomeEl={welcomeEl}

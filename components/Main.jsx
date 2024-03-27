@@ -45,10 +45,12 @@ export default function Main({
     ))
   )
 
+  //main container styles
   const mainStyle = `bg-transparent pt-[65px] pb-[90px]  
     h-screen overflow-scroll relative z-[0] px-2 relative`
   ;
 
+  
   const langTranTheme = `bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] 
     from-yellow-300 via-red-600 to-fuchsia-700`
   ;
@@ -68,7 +70,7 @@ export default function Main({
   ;
   return (
     // Main chat section with dynamic styles and content
-    <main className={`${toggleImgGen ? langTranTheme : aIImgGenTheme}`}
+    <main className={`overflow-hidden ${toggleImgGen ? langTranTheme : aIImgGenTheme}`}
     >
       {copyNotification && <span className={`${copyStyles}`}>
         {copyNotification}

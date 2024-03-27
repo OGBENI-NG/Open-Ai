@@ -40,7 +40,7 @@ export default function Footer({
 
   // Render the footer component with dynamic styles and content
   return (
-    <footer className={`fixed z-[999] w-full bottom-0 left-0 
+    <footer className={`fixed z-50 w-full bottom-0  
       backdrop-blur-[100px] bg-white/75 px-3 pt-4 pb-8
       `
     }>

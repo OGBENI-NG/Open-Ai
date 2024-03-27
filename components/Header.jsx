@@ -22,7 +22,7 @@ export default function Header({
     <header
       ref={navbarRef}
       className={`px-3 py-4 backdrop-blur-[100px] bg-white/75 
-      fixed w-full z-[999] top-0 left-0 
+      fixed w-full z-50 top-0 
       `}
     >
       <section className='flex items-center'>
